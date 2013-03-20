@@ -1,11 +1,18 @@
 {
-	"name": "osx",
-	"default_attributes": { },
-	"override_attributes": { },
-	"json_class": "Chef::Role",
-	"description": "OSX Role",
-	"chef_type": "role",
-	"run_list": [
-		"recipe[homebrew]"
-	]
+    "name": "osx",
+    "default_attributes": {
+        "paths": {
+            "bootstrap": "~/projects/bootstrap",
+            "env": "~/projects/bootstrap/env",
+            "chef": "~/projects/bootstrap/chef"
+        }
+    },
+    "override_attributes": { },
+    "json_class": "Chef::Role",
+    "description": "OSX Role",
+    "chef_type": "role",
+    "run_list": [
+        "recipe[homebrew]",
+        "recipe[environment]"
+    ]
 }

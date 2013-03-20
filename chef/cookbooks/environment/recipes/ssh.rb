@@ -1,4 +1,5 @@
 cookbook_file "/usr/libexec/ssh-askpass" do
+    source "ssh-askpass.sh"
     mode "755"
     owner "root"
     group "wheel"

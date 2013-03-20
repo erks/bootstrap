@@ -32,16 +32,16 @@ if ! gem spec chef > /dev/null 2>&1; then
 fi
 
 if [ -z ${NODE} ]; then
-	NODE="home"
+    NODE="home"
 fi
 
 NODE_PATH="${BOOTSTRAP_PATH}/chef/nodes/${NODE}.json"
 if [ ! -f ${NODE_PATH} ]; then
-	echo "File doesn't exist: ${NODE_PATH}"
-	exit 1
+    echo "File doesn't exist: ${NODE_PATH}"
+    exit 1
 fi
 
 echo "Running chef..."
-pushd "${BOOTSTRAP_PATH}"/chef
+pushd "${BOOTSTRAP_PATH}"/chef > /dev/null
 rvmsudo_secure_path=1 rvmsudo PWD=`pwd` chef-solo --config conf/solo.rb --json-attributes ${NODE_PATH}
-popd
+popd > /dev/null

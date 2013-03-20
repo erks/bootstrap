@@ -1,0 +1,23 @@
+[alias]
+        svnup = "!git svn fetch --all; git svn rebase"
+        svnsw = "!f() { git co $1; git svnup; }; f"
+        co = checkout
+        ci = commit
+        st = status --short --branch
+        br = branch --verbose --verbose
+        l = log --decorate --name-status
+        ll = log --decorate --name-status --all
+        f = fetch
+[user]
+	name = Touch Ungboriboonpisal
+        email = touch@example.com
+[push]
+	default = tracking
+[credential]
+	helper = osxkeychain
+[http]
+	sslVerify = false
+[color]
+        ui = auto
+[core]
+	autocrlf = input
