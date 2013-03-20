@@ -1,0 +1,11 @@
+{
+	"name": "osx",
+	"default_attributes": { },
+	"override_attributes": { },
+	"json_class": "Chef::Role",
+	"description": "OSX Role",
+	"chef_type": "role",
+	"run_list": [
+		"recipe[homebrew]"
+	]
+}
