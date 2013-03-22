@@ -26,6 +26,14 @@ else
     popd
 fi
 
+if ! command -v rvm > /dev/null 2>&1; then
+    echo "Installing rvm..."
+    curl -#L https://get.rvm.io | bash -s stable --ruby
+    source /Users/erk/.rvm/scripts/rvm
+fi
+
+rvm system
+
 if ! gem spec chef > /dev/null 2>&1; then
     echo "Installing chef..."
     sudo gem install chef
