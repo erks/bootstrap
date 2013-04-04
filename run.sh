@@ -31,9 +31,6 @@ if ! command -v rvm > /dev/null 2>&1; then
     curl -#L https://get.rvm.io | bash -s stable
 fi
 
-source ~/.rvm/scripts/rvm
-rvm system
-
 if ! gem spec chef > /dev/null 2>&1; then
     echo "Installing chef..."
     sudo gem install chef
