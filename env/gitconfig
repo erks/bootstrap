@@ -8,6 +8,7 @@
         l = log --decorate --name-status
         ll = log --decorate --name-status --all
         f = fetch
+        p = pull
 [user]
 	name = Touch Ungboriboonpisal
         email = touch@example.com
