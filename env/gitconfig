@@ -22,3 +22,5 @@
         ui = auto
 [core]
 	autocrlf = input
+[diff]
+        algorithm = patience
