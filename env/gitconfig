@@ -8,7 +8,10 @@
         l = log --decorate --name-status
         ll = log --decorate --name-status --all
         f = fetch
+        fu = fetch upstream
+        m = merge
         p = pull
+        pu = pull upstream
 [user]
 	name = Touch Ungboriboonpisal
         email = touch@example.com
