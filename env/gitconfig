@@ -13,6 +13,8 @@
         m = merge
         p = pull
         pu = pull upstream
+        sub = submodule
+        subup = submodule update --recursive --init
 [user]
 	name = Touch Ungboriboonpisal
         email = touch@example.com
