@@ -7,9 +7,7 @@
         br = branch --verbose --verbose
         l = log --decorate --name-status
         ll = log --decorate --name-status --all
-        f = fetch --prune
-        fu = fetch --prune upstream
-        fa = fetch --all --prune
+        f = fetch --all --prune
         m = merge
         p = pull
         pu = pull upstream
