@@ -1,7 +1,7 @@
 #!/bin/bash
 
 BOOTSTRAP_PATH=~/projects/bootstrap
-BOOTSTRAP_REPRO=git@github.com:erks/bootstrap.git
+BOOTSTRAP_REPRO=https://github.com/erks/bootstrap.git
 
 if ! command -v brew > /dev/null 2>&1; then
     echo "Installing homebrew..."
