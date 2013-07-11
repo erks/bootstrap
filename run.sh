@@ -1,7 +1,7 @@
 #!/bin/bash
 
 BOOTSTRAP_PATH=~/projects/bootstrap
-BOOTSTRAP_REPRO=https://github.com/erks/bootstrap.git
+BOOTSTRAP_REPO=https://github.com/erks/bootstrap.git
 
 if ! command -v brew > /dev/null 2>&1; then
     echo "Installing homebrew..."
@@ -17,7 +17,7 @@ if [ ! -d "${BOOTSTRAP_PATH}" ]; then
     echo "Cloning bootstrap repro..."
     mkdir -p "${BOOTSTRAP_PATH}"
     pushd "${BOOTSTRAP_PATH}"
-    git clone ${BOOTSTRAP_REPRO} .
+    git clone ${BOOTSTRAP_REPO} .
     popd
 else
     echo "Updating bootstrap repro..."
