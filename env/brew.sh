@@ -20,8 +20,8 @@ fi
 
 # git
 if [ -d `brew --prefix git` ]; then
-     PS1='\h:\W$(__git_ps1 "(%s)") \u\$ '
-     link $env_path/gitconfig ~/.gitconfig
+    PS1='\h:\W$(__git_ps1 "(%s)") \u\$ '
+    link $env_path/gitconfig ~/.gitconfig
 fi
 
 # node.js
