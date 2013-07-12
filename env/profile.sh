@@ -8,7 +8,7 @@ function update() {
     pushd ${bootstrap_path} > /dev/null
     git pull origin master
     popd > /dev/null
-    source $HOME/.profile
+    source $HOME/.bash_profile
 }
 
 function sshkey() {
