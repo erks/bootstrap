@@ -1,10 +1,16 @@
 home = ENV['HOME']
 env_path = File.expand_path(node.paths.env)
-profile_path = File.join(home, ".profile")
+bashrc_path = File.join(home, ".bashrc")
+bashprofile_path = File.join(home, ".bash_profile")
 profile_script_path = File.join(env_path, "profile.sh")
 
-execute "update profile" do
-    command "echo \"source #{profile_script_path}\" >> #{profile_path}"
-    not_if "grep #{profile_script_path} #{profile_path}"
+execute "update .bashrc" do
+    command "echo \"source #{profile_script_path}\" >> #{bashrc_path}"
+    not_if "grep #{profile_script_path} #{bashrc_path}"
+end
+
+execute "update .bash_profile" do
+    command "echo \"[[ -f \$HOME/.bashrc ]] && source \$HOME/.bashrc\" >> #{bashprofile_path}"
+    not_if "grep '.bashrc' #{bashprofile_path}"
 end
 
