@@ -7,7 +7,7 @@
         br = branch --verbose --verbose
         l = log --decorate --name-status
         ll = log --decorate --name-status --all
-        f = fetch --all --prune
+        f = "!git fetch --all --prune; git fetch --tags"
         m = merge
         p = pull
         pu = pull upstream
