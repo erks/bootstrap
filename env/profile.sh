@@ -43,3 +43,8 @@ fi
 
 source $env_path/brew.sh
 
+# xcode
+alias symbolicatecrash='/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/Library/PrivateFrameworks/DTDeviceKit.framework/Versions/A/Resources/symbolicatecrash'
+export DEVELOPER_DIR='/Applications/Xcode.app/Contents/Developer'
+
+
