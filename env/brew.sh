@@ -52,7 +52,7 @@ alias installed='brew list --versions';
 alias outdated='brew update;brew outdated;sudo softwareupdate -l';
 alias upgrade='brew upgrade `brew outdated`;sudo softwareupdate -ia';
 alias uninstall='brew cleanup';
-alias fixall='fixmysql;fixnginx;fixstunnel;fixhaproxy;fixtomcat;fixopenvpn;fixappengine';
+alias fixall='fixmysql;fixnginx;fixstunnel;fixhaproxy;fixtomcat;fixopenvpn';
 
 daemons_path='/Library/LaunchDaemons'
 
@@ -146,12 +146,6 @@ function fixopenvpn() {
         link $env_path/etc/openvpn/openvpn.conf /usr/local/etc/openvpn/
         cp ~/Dropbox/openvpn/keys/{dh1024.pem,hogwarts-potter.crt,hogwarts-ca.crt,potter.key} /usr/local/etc/openvpn/
         load $plist
-    fi
-}
-
-function fixappengine() {
-    if [ -d `brew --prefix google-app-engine` ]; then
-        link `brew --prefix google-app-engine`/share/google-app-engine /usr/local/share/google-app-engine
     fi
 }
 
