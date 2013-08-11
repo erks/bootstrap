@@ -52,7 +52,7 @@ alias installed='brew list --versions';
 alias outdated='brew update;brew outdated;sudo softwareupdate -l';
 alias upgrade='brew upgrade `brew outdated`;sudo softwareupdate -ia';
 alias uninstall='brew cleanup';
-alias fixall='fixmysql;fixnginx;fixstunnel;fixhaproxy;fixtomcat;fixopenvpn';
+alias fixall='fixnginx;fixstunnel;fixhaproxy;fixopenvpn';
 
 daemons_path='/Library/LaunchDaemons'
 
@@ -85,15 +85,6 @@ function plink() {
     sudo link $env_path/Library/LaunchDaemons/$1.plist $daemons_path/
 }
 
-function fixmysql() {
-    if [ -d `brew --prefix mysql` ]; then
-        plist=homebrew.mxcl.mysql
-        unload $plist
-        sudo link `brew --prefix mysql`/$plist.plist $daemons_path/
-        load $plist
-    fi
-}
-
 function fixnginx() {
     if [ -d `brew --prefix nginx` ]; then
         plist=homebrew.mxcl.nginx
@@ -122,18 +113,6 @@ function fixhaproxy() {
         plink $plist
         mkdir -p /usr/local/etc/haproxy
         link $env_path/etc/haproxy/haproxy.conf /usr/local/etc/haproxy/
-        load $plist
-    fi
-}
-
-function fixtomcat() {
-    if [ -d `brew --prefix tomcat` ]; then
-        plist=org.apache.tomcat
-        unload $plist
-        plink $plist
-        link `brew --prefix tomcat`/libexec /usr/local/etc/tomcat/
-        link /usr/local/etc/tomcat/libexec/{bin,conf,lib} /usr/local/etc/tomcat/
-        sed -i'.bak' 's/<Connector port="8080" p/<Connector port="8080" URIEncoding="UTF-8" p/' /usr/local/etc/tomcat/conf/server.xml
         load $plist
     fi
 }
