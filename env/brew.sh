@@ -52,7 +52,7 @@ alias installed='brew list --versions';
 alias outdated='brew update;brew outdated;sudo softwareupdate -l';
 alias upgrade='brew upgrade `brew outdated`;sudo softwareupdate -ia';
 alias uninstall='brew cleanup';
-alias fixall='fixmysql;fixnginx;fixstunnel;fixhaproxy;fixtomcat;fixjenkins;fixopenvpn;fixappengine';
+alias fixall='fixmysql;fixnginx;fixstunnel;fixhaproxy;fixtomcat;fixopenvpn;fixappengine';
 
 daemons_path='/Library/LaunchDaemons'
 
@@ -138,16 +138,6 @@ function fixtomcat() {
     fi
 }
 
-function fixjenkins() {
-    if [ -d `brew --prefix jenkins` ]; then
-        plist=org.apache.tomcat
-        unload $plist
-        sudo rm -rf /usr/local/etc/tomcat/webapps/jenkins
-        link `brew --prefix jenkins`/libexec/jenkins.war /usr/local/etc/tomcat/webapps/
-        load $plist
-    fi
-}
-
 function fixopenvpn() {
     if [ -d `brew --prefix openvpn` ]; then
         plist=homebrew.mxcl.openvpn
@@ -164,3 +154,4 @@ function fixappengine() {
         link `brew --prefix google-app-engine`/share/google-app-engine /usr/local/share/google-app-engine
     fi
 }
+
