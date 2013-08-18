@@ -1,6 +1,6 @@
 #!/bin/sh
 
-bootstrap_path=$HOME/projects/bootstrap
+bootstrap_path=$HOME/projects/erks/bootstrap
 env_path=${bootstrap_path}/env
 
 function update() {

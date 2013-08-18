@@ -1,6 +1,6 @@
 #!/bin/bash
 
-BOOTSTRAP_PATH=~/projects/bootstrap
+BOOTSTRAP_PATH=~/projects/erks/bootstrap
 BOOTSTRAP_REPO=https://github.com/erks/bootstrap.git
 
 if ! command -v brew > /dev/null 2>&1; then

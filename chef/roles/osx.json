@@ -2,9 +2,9 @@
     "name": "osx",
     "default_attributes": {
         "paths": {
-            "bootstrap": "~/projects/bootstrap",
-            "env": "~/projects/bootstrap/env",
-            "chef": "~/projects/bootstrap/chef"
+            "bootstrap": "~/projects/erks/bootstrap",
+            "env": "~/projects/erks/bootstrap/env",
+            "chef": "~/projects/erks/bootstrap/chef"
         }
     },
     "override_attributes": { },
