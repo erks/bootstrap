@@ -35,7 +35,7 @@ alias sudo='sudo '
 link $env_path/vimrc $HOME/.vimrc
 
 # ssh
-ssh_key_path=$HOME/Dropbox/keys/touch@ungboriboonpisal.com
+ssh_key_path="~/Dropbox/keys/touch@ungboriboonpisal.com"
 if ! grep "$ssh_key_path" $HOME/.ssh/config > /dev/null 2>&1; then
     echo "adding ssh identity..."
     echo "IdentityFile $ssh_key_path" >> $HOME/.ssh/config
