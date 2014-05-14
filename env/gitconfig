@@ -7,10 +7,10 @@
     br = branch --verbose --verbose
     l = log --decorate --name-status
     ll = log --decorate --name-status --all
-    f = "!git fetch --all --prune; git fetch --tags"
+    f = fetch --all --prune --tags
     m = merge
-    p = pull
-    pu = pull upstream
+    p = pull --all --prune
+    pu = pull upstreama --all --prune
     sub = submodule
     subup = submodule update --recursive --init
 [user]
