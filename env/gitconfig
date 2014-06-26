@@ -10,7 +10,7 @@
     f = fetch --all --prune --tags
     m = merge
     p = pull --all --prune
-    pu = pull upstreama --all --prune
+    pu = pull upstream --all --prune
     sub = submodule
     subup = submodule update --recursive --init
 [user]
