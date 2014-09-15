@@ -7,10 +7,7 @@ fi
 
 # go env
 if [ -d `brew --prefix go` ]; then
-    export GOROOT=`brew --cellar go`
-    export GOBIN=/usr/local/bin
-    export GOARCH=amd64
-    export GOOS=darwin
+  export PATH=$PATH:/usr/local/opt/go/libexec/bin
 fi
 
 # python path
@@ -51,7 +48,7 @@ fi
 alias installed='brew list --versions';
 alias outdated='brew update;brew outdated;sudo softwareupdate -l';
 alias upgrade='brew upgrade `brew outdated`;sudo softwareupdate -ia';
-alias uninstall='brew cleanup';
+alias uninstall='brew cleanup; brew cask cleanup';
 alias fixall='fixnginx;fixstunnel;fixhaproxy;fixopenvpn';
 
 daemons_path='/Library/LaunchDaemons'
