@@ -7,7 +7,8 @@ fi
 
 # go env
 if [ -d `brew --prefix go` ]; then
-  export PATH=$PATH:/usr/local/opt/go/libexec/bin
+  export GOPATH=$HOME/projects/go
+  export PATH=$PATH:/usr/local/opt/go/libexec/bin:$GOPATH/bin
 fi
 
 # python path
