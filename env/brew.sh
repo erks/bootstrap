@@ -8,6 +8,7 @@ fi
 # go env
 if [ -d `brew --prefix go` ]; then
   export GOPATH=$HOME/projects/go
+  mkdir -p $GOPATH/{bin,src,pkg} > /dev/null
   export PATH=$PATH:/usr/local/opt/go/libexec/bin:$GOPATH/bin
 fi
 
