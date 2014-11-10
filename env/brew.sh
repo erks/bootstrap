@@ -5,6 +5,11 @@ if [ -f `brew --prefix`/etc/bash_completion ]; then
     . `brew --prefix`/etc/bash_completion
 fi
 
+# boot2docker
+if [ -d `brew --prefix boot2docker` ]; then
+  $(boot2docker shellinit)
+fi
+
 # go env
 if [ -d `brew --prefix go` ]; then
   export GOPATH=$HOME/projects/go
