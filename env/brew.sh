@@ -17,6 +17,10 @@ if [ -d `brew --prefix go` ]; then
   export PATH=$PATH:/usr/local/opt/go/libexec/bin:$GOPATH/bin
 fi
 
+if [ -d `brew --prefix android` ]; then
+  export ANDROID_HOME=/usr/local/opt/android-sdk
+fi
+
 # python path
 if [ -d `brew --prefix python` ]; then
     export PATH=/usr/local/share/python:$PATH
