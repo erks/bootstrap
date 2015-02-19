@@ -10,6 +10,11 @@ if [ -d `brew --prefix boot2docker` ]; then
   $(boot2docker shellinit)
 fi
 
+# awscli
+if [ -d `brew --prefix awscli` ]; then
+	complete -C aws_completer aws
+fi
+
 # go env
 if [ -d `brew --prefix go` ]; then
   export GOPATH=$HOME/projects/go

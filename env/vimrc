@@ -27,3 +27,5 @@ cmap w!! %!sudo tee > /dev/null %
 
 syntax on
 colorscheme molokai
+
+let g:ycm_server_keep_logfiles = 1
