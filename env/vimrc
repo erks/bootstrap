@@ -18,7 +18,6 @@ set number
 set softtabstop=2
 set tabstop=2
 set shiftwidth=2
-"set expandtab
 set autoindent
 set cursorline
 
@@ -29,3 +28,5 @@ syntax on
 colorscheme molokai
 
 let g:ycm_server_keep_logfiles = 1
+
+autocmd BufWritePre * :%s/\s\+$//e
