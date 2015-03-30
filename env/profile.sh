@@ -3,19 +3,19 @@
 bootstrap_path=$HOME/projects/erks/bootstrap
 env_path=${bootstrap_path}/env
 
-function update() {
-    echo "updating the env git repo..."
-    pushd ${bootstrap_path} > /dev/null
-    git pull origin master
-    popd > /dev/null
-    source $HOME/.bash_profile
-}
+# enable GREP colors
+export GREP_OPTIONS='--color=auto'
 
-function sshkey() {
-    echo "updating ssh public key..."
-    scp $HOME/Dropbox/keys/touch@ungboriboonpisal.com.pub $1:.ssh/id_rsa.pub
-    ssh $1 "cat .ssh/id_rsa.pub >> .ssh/authorized_keys; chmod 755 $HOME; chmod 755 $HOME/.ssh; chmod 644 $HOME/.ssh/authorized_keys"
-}
+# complete sudo and man-pages
+complete -cf sudo man
+
+if [ -f "${env_path}/aliases.sh" ]; then
+	. "${env_path}/aliases.sh"
+fi
+
+if [ -f "${env_path}/functions.sh" ]; then
+	. "${env_path}/functions.sh"
+fi
 
 export PATH=$HOME/bin:$HOME/Dropbox/bin:/usr/local/sbin:/usr/local/bin:$PATH
 
@@ -27,10 +27,6 @@ then
     . /usr/local/bin/virtualenvwrapper.sh
 fi
 
-# symlink
-alias link='ln -sfFh'
-alias sudo='sudo '
-
 # vimrc
 link $env_path/vimrc $HOME/.vimrc
 
@@ -41,9 +37,6 @@ if ! grep "$ssh_key_path" $HOME/.ssh/config > /dev/null 2>&1; then
     echo "IdentityFile $ssh_key_path" >> $HOME/.ssh/config
 fi
 
-source $env_path/brew.sh
-
-# xcode
-alias symbolicatecrash='/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/Library/PrivateFrameworks/DTDeviceKit.framework/Versions/A/Resources/symbolicatecrash -v'
-alias symbolicate='atos -arch armv7 -o'
-
+if [ -f "${env_path}/brew.sh" ]; then
+	. "${env_path}/brew.sh"
+fi

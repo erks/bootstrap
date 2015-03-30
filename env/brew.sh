@@ -33,6 +33,7 @@ fi
 
 # git
 if [ -d `brew --prefix git` ]; then
+		GIT_PS1_SHOWDIRTYSTATE=1
     PS1='\h:\W$(__git_ps1 "(%s)") \u\$ '
     link $env_path/gitconfig ~/.gitconfig
 fi
