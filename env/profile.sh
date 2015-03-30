@@ -5,6 +5,8 @@ set -o vi
 bootstrap_path=$HOME/projects/erks/bootstrap
 env_path=${bootstrap_path}/env
 
+export PATH=$HOME/bin:$HOME/Dropbox/bin:/usr/local/sbin:/usr/local/bin:$PATH
+
 # enable GREP colors
 export GREP_OPTIONS='--color=auto'
 
@@ -18,8 +20,6 @@ fi
 if [ -f "${env_path}/functions.sh" ]; then
 	. "${env_path}/functions.sh"
 fi
-
-export PATH=$HOME/bin:$HOME/Dropbox/bin:/usr/local/sbin:/usr/local/bin:$PATH
 
 # python virtualenvwrapper
 if [ -f /usr/local/bin/virtualenvwrapper.sh ];
