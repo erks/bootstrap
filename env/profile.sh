@@ -1,5 +1,7 @@
 #!/bin/sh
 
+set -o vi
+
 bootstrap_path=$HOME/projects/erks/bootstrap
 env_path=${bootstrap_path}/env
 
