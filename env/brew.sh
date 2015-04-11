@@ -1,7 +1,7 @@
 #!/bin/bash
 
 link "/usr/local/Library/Contributions/brew_bash_completion.sh" "/usr/local/etc/bash_completion.d"
-if [ -f `brew --prefix`/etc/bash_completion ]; then    
+if [ -f `brew --prefix`/etc/bash_completion ]; then
     . `brew --prefix`/etc/bash_completion
 fi
 
@@ -25,11 +25,6 @@ fi
 if [ -d `brew --prefix android` ]; then
   export ANDROID_HOME=/usr/local/opt/android-sdk
 fi
-
-# python path
-if [ -d `brew --prefix python` ]; then
-    export PATH=/usr/local/share/python:$PATH
-fi 
 
 # git
 if [ -d `brew --prefix git` ]; then
@@ -72,7 +67,7 @@ daemons_path='/Library/LaunchDaemons'
 
 function preload() {
     sudo chown -R -H root $daemons_path/$1.plist
-    sudo chmod 644 $daemons_path/$1.plist 
+    sudo chmod 644 $daemons_path/$1.plist
 }
 
 function unload() {
