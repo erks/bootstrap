@@ -1,7 +1,5 @@
 #!/bin/sh
 
-set -o vi
-
 bootstrap_path=$HOME/projects/erks/bootstrap
 env_path=${bootstrap_path}/env
 
@@ -19,14 +17,6 @@ fi
 
 if [ -f "${env_path}/functions.sh" ]; then
 	. "${env_path}/functions.sh"
-fi
-
-# python virtualenvwrapper
-if [ -f /usr/local/bin/virtualenvwrapper.sh ];
-then
-    export WORKON_HOME=$HOME/projects/python/virtualenvs
-    export PROJECT_HOME=$HOME/projects/python
-    . /usr/local/bin/virtualenvwrapper.sh
 fi
 
 # vimrc
