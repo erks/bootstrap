@@ -15,6 +15,7 @@
     subup = submodule update --recursive --init
 [user]
 	name = Touch Ungboriboonpisal
+	email = touch@ungboriboonpisal.com
 [push]
 	default = tracking
 [credential]
