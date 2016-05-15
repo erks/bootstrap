@@ -16,6 +16,7 @@
 [user]
 	name = Touch Ungboriboonpisal
 	useconfigonly = true
+	email = touch@ungboriboonpisal.com
 [push]
 	default = tracking
 [credential]
