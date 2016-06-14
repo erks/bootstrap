@@ -1,6 +1,4 @@
 [alias]
-    svnup = "!git svn fetch --all; git svn rebase"
-    svnsw = "!f() { git co $1; git svnup; }; f"
     co = checkout
     ci = commit
     st = status --short --branch
@@ -8,24 +6,21 @@
     l = log --decorate --name-status
     ll = log --decorate --name-status --all
     f = fetch --all --prune --tags
-    m = merge
     p = pull --all --prune
-    pu = pull upstream --all --prune
     sub = submodule
     subup = submodule update --recursive --init
 [user]
-	name = Touch Ungboriboonpisal
-	useconfigonly = true
-	email = touch@ungboriboonpisal.com
+    name = Touch Ungboriboonpisal
+    useconfigonly = true
+    email = touch@ungboriboonpisal.com
 [push]
-	default = tracking
+    default = tracking
 [credential]
-	helper = osxkeychain
-[http]
-	sslVerify = false
+    helper = osxkeychain
 [color]
     ui = auto
 [core]
-	autocrlf = input
+    autocrlf = input
 [diff]
     algorithm = patience
+    compactionHeuristic = true
