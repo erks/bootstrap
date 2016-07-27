@@ -1,29 +1,29 @@
 [alias]
-    co = checkout
-    ci = commit
-    st = status --short --branch
-    br = branch --verbose --verbose
-    l = log --decorate --name-status
-    ll = log --decorate --name-status --all
-    f = fetch --all --prune --tags
-    p = pull --all --prune
-    sub = submodule
-    subup = submodule update --recursive --init
+  co = checkout
+  ci = commit
+  st = status --short --branch
+  br = branch --verbose --verbose
+  l = log --decorate --name-status
+  ll = log --decorate --name-status --all
+  f = fetch --all --prune --tags
+  p = pull --all --prune
+  sub = submodule
+  subup = submodule update --recursive --init
 [user]
-    name = Touch Ungboriboonpisal
-    useconfigonly = true
+  name = Touch Ungboriboonpisal
+  useconfigonly = true
 	email = tungbori@zynga.com
 [push]
-    default = tracking
+  default = tracking
 [credential]
-    helper = osxkeychain
+  helper = osxkeychain
 [color]
-    ui = auto
+  ui = auto
 [core]
-    autocrlf = input
+  autocrlf = input
 [diff]
-    algorithm = patience
-    compactionHeuristic = true
+  algorithm = patience
+  compactionHeuristic = true
 [filter "lfs"]
 	clean = git-lfs clean %f
 	smudge = git-lfs smudge %f
