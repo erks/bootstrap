@@ -12,6 +12,7 @@
 [user]
     name = Touch Ungboriboonpisal
     useconfigonly = true
+	email = tungbori@zynga.com
 [push]
     default = tracking
 [credential]
@@ -23,3 +24,7 @@
 [diff]
     algorithm = patience
     compactionHeuristic = true
+[filter "lfs"]
+	clean = git-lfs clean %f
+	smudge = git-lfs smudge %f
+	required = true
