@@ -11,10 +11,7 @@
   subup = submodule update --recursive --init
 [user]
   name = Touch Ungboriboonpisal
-  useconfigonly = true
-  email = tungbori@zynga.com
-[push]
-  default = tracking
+  useConfigOnly = true
 [credential]
   helper = osxkeychain
 [color]
