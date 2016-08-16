@@ -31,7 +31,7 @@ fi
 if [ -d `brew --prefix git` ]; then
   GIT_PS1_SHOWDIRTYSTATE=1
   GIT_PS1_SHOWUNTRACKEDFILES=1
-  GIT_PS1_SHOWUPSTREAM="auto verbose name"
+  GIT_PS1_SHOWUPSTREAM="auto name"
   GIT_PS1_SHOWCOLORHINTS=1
   PS1='\h:\W$(__git_ps1 "(%s)") \u\n\$ '
   link $env_path/gitconfig ~/.gitconfig
