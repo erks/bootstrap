@@ -1,7 +1,6 @@
 #!/bin/bash
 if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
 
-link "/usr/local/Library/Contributions/brew_bash_completion.sh" "/usr/local/etc/bash_completion.d"
 if [ -f `brew --prefix`/etc/bash_completion ]; then
   . `brew --prefix`/etc/bash_completion
 fi
