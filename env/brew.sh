@@ -1,6 +1,10 @@
 #!/bin/bash
 if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
 
+if [ ! -f `brew --prefix`/etc/bash_completion ]; then
+  brew install bash-completion
+fi
+
 if [ -f `brew --prefix`/etc/bash_completion ]; then
   . `brew --prefix`/etc/bash_completion
 fi
@@ -27,6 +31,9 @@ if [ -d `brew --prefix android` ]; then
 fi
 
 # git
+if [ ! -d `brew --prefix git` ]; then
+  brew install git --with-pcre --with-blk-sha1
+fi
 if [ -d `brew --prefix git` ]; then
   GIT_PS1_SHOWDIRTYSTATE=1
   GIT_PS1_SHOWUNTRACKEDFILES=1

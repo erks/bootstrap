@@ -12,23 +12,28 @@ export GREP_OPTIONS='--color=auto'
 complete -cf sudo man
 
 if [ -f "${env_path}/aliases.sh" ]; then
-	. "${env_path}/aliases.sh"
+  . "${env_path}/aliases.sh"
 fi
 
 if [ -f "${env_path}/functions.sh" ]; then
-	. "${env_path}/functions.sh"
+  . "${env_path}/functions.sh"
 fi
 
-# vimrc
+# vim
 link $env_path/vimrc $HOME/.vimrc
+if [ ! -e "${HOME}/.vim/bundle/Vundle.vim" ]; then
+  git clone https://github.com/VundleVim/Vundle.vim.git ${HOME}/.vim/bundle/Vundle.vim
+  vim +PluginInstall +qall
+fi
 
 # ssh
 ssh_key_path="~/Dropbox/keys/touch@ungboriboonpisal.com"
 if ! grep "$ssh_key_path" $HOME/.ssh/config > /dev/null 2>&1; then
-    echo "adding ssh identity..."
-    echo "IdentityFile $ssh_key_path" >> $HOME/.ssh/config
+  echo "adding ssh identity..."
+  echo "IdentityFile $ssh_key_path" >> $HOME/.ssh/config
 fi
+export SSH_ASKPASS="/usr/local/libexec/ssh-askpass"
 
 if [ -f "${env_path}/brew.sh" ]; then
-	. "${env_path}/brew.sh"
+  . "${env_path}/brew.sh"
 fi

@@ -1,16 +1,15 @@
 #!/bin/bash
 
+set -e
+
+trap "exit" INT
+
 BOOTSTRAP_PATH=~/projects/erks/bootstrap
 BOOTSTRAP_REPO=https://github.com/erks/bootstrap.git
 
 if ! command -v brew > /dev/null 2>&1; then
     echo "Installing homebrew..."
-    ruby -e "$(curl -fsSL https://raw.github.com/mxcl/homebrew/go)"
-fi
-
-if ! command -v git > /dev/null 2>&1; then
-    echo "Installing git..."
-    brew install git --with-pcre --with-blk-sha1
+    /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
 fi
 
 if [ ! -d "${BOOTSTRAP_PATH}" ]; then
@@ -26,21 +25,27 @@ else
     popd
 fi
 
-if ! command -v rvm > /dev/null 2>&1; then
-    echo "Installing rvm..."
-    curl -#L https://get.rvm.io | bash -s stable
+if ! command -v rbenv > /dev/null 2>&1; then
+    echo "Installing rbenv..."
+    brew install rbenv
+fi
+
+eval "$(rbenv init -)"
+
+latest_ruby=$(rbenv install -l | grep -v - | tail -1)
+if ! rbenv version | grep ${latest_ruby}; then
+    echo "Installing ruby ${latest_ruby}..."
+    rbenv install ${latest_ruby}
+    rbenv local ${latest_ruby}
+    rbenv rehash
 fi
 
 if ! gem spec chef > /dev/null 2>&1; then
     echo "Installing chef..."
-    sudo gem install chef
+    gem install chef
 fi
 
-if [ -z ${NODE} ]; then
-    NODE="home"
-fi
-
-NODE_PATH="${BOOTSTRAP_PATH}/chef/nodes/${NODE}.json"
+NODE_PATH="${BOOTSTRAP_PATH}/chef/nodes/home.json"
 if [ ! -f ${NODE_PATH} ]; then
     echo "File doesn't exist: ${NODE_PATH}"
     exit 1
@@ -48,5 +53,5 @@ fi
 
 echo "Running chef..."
 pushd "${BOOTSTRAP_PATH}"/chef > /dev/null
-rvmsudo_secure_path=1 rvmsudo PWD=`pwd` chef-solo --config conf/solo.rb --json-attributes ${NODE_PATH}
+$(rbenv which chef-solo) --config conf/solo.rb --json-attributes ${NODE_PATH}
 popd > /dev/null
