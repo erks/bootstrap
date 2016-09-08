@@ -1,13 +1,17 @@
-cookbook_file "/usr/libexec/ssh-askpass" do
+directory "/usr/local/libexec" do
+    recursive true
+    owner ENV["USER"]
+end
+
+cookbook_file "/usr/local/libexec/ssh-askpass" do
     source "ssh-askpass.sh"
     mode "755"
-    owner "root"
-    group "wheel"
+    owner ENV["USER"]
     action :create_if_missing
 end
 
 home = ENV['HOME']
-key_path = "#{home}/Dropbox/keys/touch@ungboriboonpisal.com"
+key_path = "#{home}/Dropbox/keys/touch@ungboriboonpisal.com.nopass"
 
 file key_path do
     mode "600"
