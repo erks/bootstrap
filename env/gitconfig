@@ -18,6 +18,7 @@
   ui = auto
 [core]
   autocrlf = input
+  editor = /usr/bin/vim
 [diff]
   algorithm = patience
   compactionHeuristic = true
