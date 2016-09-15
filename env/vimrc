@@ -26,7 +26,7 @@ set backspace=indent,eol,start
 cmap w!! %!sudo tee > /dev/null %
 
 syntax on
-colorscheme molokai
+silent! colorscheme molokai
 
 let g:ycm_server_keep_logfiles = 1
 
