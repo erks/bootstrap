@@ -22,3 +22,10 @@ execute "add key to keychain" do
     not_if "ssh-add -l | grep #{key_path}"
 end
 
+directory "#{home}/.ssh" do
+    recursive true
+    owner ENV["USER"]
+end
+
+execute "touch #{home}/.ssh/config"
+
