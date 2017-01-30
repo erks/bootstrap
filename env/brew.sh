@@ -63,6 +63,5 @@ if [ -d `brew --prefix nginx` ]; then
 fi
 
 alias installed='brew list --versions';
-alias outdated='brew update;brew outdated;sudo softwareupdate -l';
-alias upgrade='brew upgrade `brew outdated`;sudo softwareupdate -ia';
+alias upgrade='brew upgrade `brew outdated`';
 alias uninstall='brew cleanup; brew cask cleanup';

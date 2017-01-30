@@ -11,7 +11,7 @@ cookbook_file "/usr/local/libexec/ssh-askpass" do
 end
 
 home = ENV['HOME']
-key_path = "#{home}/Dropbox/keys/touch@ungboriboonpisal.com.nopass"
+key_path = "#{home}/Google Drive/keys/touch@ungboriboonpisal.com.nopass"
 
 file key_path do
     mode "600"
