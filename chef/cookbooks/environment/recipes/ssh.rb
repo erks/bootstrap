@@ -18,8 +18,8 @@ file key_path do
 end
 
 execute "add key to keychain" do
-    command "ssh-add -K #{key_path}"
-    not_if "ssh-add -l | grep #{key_path}"
+    command "ssh-add -K '#{key_path}'"
+    not_if "ssh-add -l | grep '#{key_path}'"
 end
 
 directory "#{home}/.ssh" do
