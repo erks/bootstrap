@@ -21,7 +21,7 @@ if [ -d `brew --prefix go` ]; then
   export PATH=$PATH:/usr/local/opt/go/libexec/bin:$GOPATH/bin
 fi
 
-if [ -d `brew --prefix android` ]; then
+if [ -d `brew --prefix android 2>/dev/null` ]; then
   export ANDROID_HOME=/usr/local/opt/android-sdk
 fi
 
