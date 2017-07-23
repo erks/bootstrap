@@ -7,7 +7,7 @@ directory "#{home}/.ssh" do
 end
 
 template "#{home}/.ssh/config" do
-    source "ssh_config"
+    source "ssh_config.erb"
     mode "600"
     owner ENV["USER"]
     variables key_path: key_path
