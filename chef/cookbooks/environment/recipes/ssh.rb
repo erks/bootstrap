@@ -11,7 +11,6 @@ template "#{home}/.ssh/config" do
     mode "600"
     owner ENV["USER"]
     variables key_path: key_path
-    action :create_if_missing
 end
 
 file key_path do
