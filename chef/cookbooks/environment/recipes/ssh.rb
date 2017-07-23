@@ -1,14 +1,14 @@
-directory "/usr/local/libexec" do
-    recursive true
-    owner ENV["USER"]
-end
+# directory "/usr/local/libexec" do
+#     recursive true
+#     owner ENV["USER"]
+# end
 
-cookbook_file "/usr/local/libexec/ssh-askpass" do
-    source "ssh-askpass.sh"
-    mode "755"
-    owner ENV["USER"]
-    action :create_if_missing
-end
+# cookbook_file "/usr/local/libexec/ssh-askpass" do
+#     source "ssh-askpass.sh"
+#     mode "755"
+#     owner ENV["USER"]
+#     action :create_if_missing
+# end
 
 home = ENV['HOME']
 key_path = "#{home}/Google Drive/keys/touch@ungboriboonpisal.com.nopass"
@@ -28,4 +28,3 @@ directory "#{home}/.ssh" do
 end
 
 execute "touch #{home}/.ssh/config"
-
