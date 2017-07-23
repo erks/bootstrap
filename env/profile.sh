@@ -26,14 +26,6 @@ if [ ! -e "${HOME}/.vim/bundle/Vundle.vim" ]; then
   vim +PluginInstall +qall
 fi
 
-# ssh
-ssh_key_path="$HOME/Google Drive/keys/touch@ungboriboonpisal.com"
-if ! grep "$ssh_key_path" $HOME/.ssh/config > /dev/null 2>&1; then
-  echo "adding ssh identity..."
-  echo "IdentityFile \"$ssh_key_path\"" >> $HOME/.ssh/config
-fi
-export SSH_ASKPASS="/usr/local/libexec/ssh-askpass"
-
 if [ -f "${env_path}/brew.sh" ]; then
   . "${env_path}/brew.sh"
 fi
