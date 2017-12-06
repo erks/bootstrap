@@ -54,5 +54,5 @@ fi
 
 echo "Running chef..."
 pushd "${BOOTSTRAP_PATH}"/chef > /dev/null
-$(rbenv which chef-solo) --config ${BOOTSTRAP_PATH}/conf/solo.rb --json-attributes ${NODE_PATH}
+$(rbenv which chef-solo) --config ${BOOTSTRAP_PATH}/chef/conf/solo.rb --json-attributes ${NODE_PATH}
 popd > /dev/null
