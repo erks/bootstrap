@@ -1,5 +1,5 @@
 home = ENV['HOME']
-key_path = "#{home}/Google Drive/keys/touch@ungboriboonpisal.com"
+key_path = "#{home}/Google Drive/keys/touch@ungboriboonpisal.com.nopass"
 
 directory "#{home}/.ssh" do
     recursive true
