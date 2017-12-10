@@ -3,7 +3,7 @@
 bootstrap_path=$HOME/projects/erks/bootstrap
 env_path=${bootstrap_path}/env
 
-export PATH=$HOME/bin:"$HOME/Google Drive/bin":/usr/local/sbin:/usr/local/bin:$PATH
+export PATH=$HOME/bin:/usr/local/sbin:/usr/local/bin:$PATH
 
 # enable GREP colors
 export GREP_OPTIONS='--color=auto'
