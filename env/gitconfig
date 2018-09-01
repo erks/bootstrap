@@ -12,6 +12,7 @@
 [user]
   name = Touch Ungboriboonpisal
   useConfigOnly = true
+  email = tungbori@zynga.com
 [credential]
   helper = osxkeychain
 [color]
@@ -21,8 +22,11 @@
   editor = /usr/bin/vim
 [diff]
   algorithm = patience
-  compactionHeuristic = true
+  indentHeuristic = true
 [filter "lfs"]
-  clean = git-lfs clean %f
-  smudge = git-lfs smudge %f
   required = true
+  clean = git-lfs clean -- %f
+  smudge = git-lfs smudge -- %f
+  process = git-lfs filter-process
+[includeIf "gitdir:zynga/"]
+  path = .gitconfig-zynga
