@@ -64,4 +64,4 @@ fi
 
 alias installed='brew list --versions';
 alias upgrade='brew upgrade `brew outdated`';
-alias uninstall='brew cleanup; brew cask cleanup';
+alias uninstall='brew cleanup';
