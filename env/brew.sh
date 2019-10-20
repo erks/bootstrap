@@ -1,4 +1,7 @@
 #!/bin/bash
+
+export BASH_SILENCE_DEPRECATION_WARNING=1
+
 if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
 
 if [ ! -f `brew --prefix`/etc/bash_completion ]; then
