@@ -65,6 +65,12 @@ if [ -d `brew --prefix nginx` ]; then
   fi
 fi
 
+# jenv
+if [ -d `brew --prefix jenv` ]; then
+  export PATH="$HOME/.jenv/bin:$PATH"
+  eval "$(jenv init -)"
+fi
+
 alias installed='brew list --versions';
 alias upgrade='brew upgrade `brew outdated`';
 alias uninstall='brew cleanup';
