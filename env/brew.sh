@@ -1,4 +1,7 @@
 #!/bin/bash
+
+export BASH_SILENCE_DEPRECATION_WARNING=1
+
 if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
 
 if [ ! -f `brew --prefix`/etc/bash_completion ]; then
@@ -62,7 +65,8 @@ if [ -d `brew --prefix nginx` ]; then
   fi
 fi
 
-if which jenv > /dev/null; then
+# jenv
+if [ -d `brew --prefix jenv` ]; then
   export PATH="$HOME/.jenv/bin:$PATH"
   eval "$(jenv init -)"
 fi
