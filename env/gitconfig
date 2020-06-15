@@ -31,3 +31,5 @@
   process = git-lfs filter-process
 [includeIf "gitdir:zynga/"]
   path = .gitconfig-zynga
+[pull]
+	rebase = false
