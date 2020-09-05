@@ -71,6 +71,12 @@ if [ -d `brew --prefix jenv` ]; then
   eval "$(jenv init -)"
 fi
 
+# goenv
+if [ -d `brew --prefix goenv` ]; then
+  export PATH="$HOME/.goenv/bin:$PATH"
+  eval "$(goenv init -)"
+fi
+
 alias installed='brew list --versions';
 alias upgrade='brew upgrade `brew outdated`';
 alias uninstall='brew cleanup';
