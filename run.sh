@@ -9,8 +9,7 @@ BOOTSTRAP_REPO=https://github.com/erks/bootstrap.git
 
 if ! command -v brew > /dev/null 2>&1; then
     echo "Installing homebrew..."
-    /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
-    sudo chown -R $(whoami):admin /usr/local
+    /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)"
 fi
 
 if [ ! -d "${BOOTSTRAP_PATH}" ]; then
