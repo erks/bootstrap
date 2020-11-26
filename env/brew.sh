@@ -1,4 +1,10 @@
-#!/bin/bash
+#!/usr/bin/env bash
+
+packages=($(brew ls --formula -1))
+
+is_installed () {
+  [[ " ${packages[@]} " =~ " $1 " ]]
+}
 
 export BASH_SILENCE_DEPRECATION_WARNING=1
 
@@ -13,22 +19,18 @@ if [ -f "$(brew --prefix)/etc/bash_completion" ]; then
 fi
 
 # awscli
-if [ -d "$(brew --prefix awscli)" ]; then
+if is_installed awscli; then
   complete -C aws_completer aws
 fi
 
 # go env
-if [ -d "$(brew --prefix go)" ]; then
-  export GOPATH=$HOME/projects/go
+if is_installed go; then
   mkdir -p $GOPATH/{bin,src,pkg} > /dev/null
   export PATH=$GOROOT/bin:$PATH:$GOPATH/bin
 fi
 
 # git
-if [ ! -d "$(brew --prefix git)" ]; then
-  brew install git
-fi
-if [ -d "$(brew --prefix git)" ]; then
+if is_installed git; then
   export GIT_PS1_SHOWDIRTYSTATE=1
   export GIT_PS1_SHOWUNTRACKEDFILES=1
   export GIT_PS1_SHOWUPSTREAM="auto name"
@@ -38,37 +40,29 @@ if [ -d "$(brew --prefix git)" ]; then
 fi
 
 # node.js
-if [ -d "$(brew --prefix node)" ]; then
+if is_installed node; then
   export NODE_PATH=/usr/local/lib/node_modules
   export PATH=/usr/local/share/npm/bin:$PATH
 fi
 
 # hub
-if [ -d "$(brew --prefix hub)" ]; then
+if is_installed hub; then
   alias git=hub
 fi
 
 # tmux
-if [ -d "$(brew --prefix tmux)" ]; then
+if is_installed tmux; then
   link $env_path/tmux.conf ~/.tmux.conf
 fi
 
-# nginx
-if [ -d "$(brew --prefix nginx)" ]; then
-  if [ ! -d /var/www/default ]; then
-    sudo mkdir -p /var/www
-    sudo link $env_path/var/www/default /var/www/default
-  fi
-fi
-
 # jenv
-if [ -d "$(brew --prefix jenv)" ]; then
+if is_installed jenv; then
   export PATH="$HOME/.jenv/bin:$PATH"
   eval "$(jenv init -)"
 fi
 
 # goenv
-if [ -d "$(brew --prefix goenv)" ]; then
+if is_installed goenv; then
   export PATH="$HOME/.goenv/bin:$PATH"
   eval "$(goenv init -)"
   export PATH=$GOROOT/bin:$PATH:$GOPATH/bin
