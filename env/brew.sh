@@ -10,23 +10,17 @@ export BASH_SILENCE_DEPRECATION_WARNING=1
 
 if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
 
-if [ ! -f "$(brew --prefix)/etc/bash_completion" ]; then
+if ! is_installed bash-completion; then
   brew install bash-completion
 fi
 
-if [ -f "$(brew --prefix)/etc/bash_completion" ]; then
+if is_installed bash-completion; then
   . "$(brew --prefix)/etc/bash_completion"
 fi
 
 # awscli
 if is_installed awscli; then
   complete -C aws_completer aws
-fi
-
-# go env
-if is_installed go; then
-  mkdir -p $GOPATH/{bin,src,pkg} > /dev/null
-  export PATH=$GOROOT/bin:$PATH:$GOPATH/bin
 fi
 
 # git
@@ -61,11 +55,18 @@ if is_installed jenv; then
   eval "$(jenv init -)"
 fi
 
+# go env
+if is_installed go; then
+  export GOPATH="$HOME/projects/go"
+  mkdir -p $GOPATH/{bin,src,pkg} > /dev/null
+  export PATH=$GOPATH/bin:$PATH
+fi
+
 # goenv
 if is_installed goenv; then
   export PATH="$HOME/.goenv/bin:$PATH"
   eval "$(goenv init -)"
-  export PATH=$GOROOT/bin:$PATH:$GOPATH/bin
+  export PATH=$GOROOT/bin:$GOPATH/bin:$PATH
 fi
 
 alias installed='brew list --versions';
