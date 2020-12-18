@@ -30,7 +30,7 @@ if is_installed git; then
   export GIT_PS1_SHOWUPSTREAM="auto name"
   export GIT_PS1_SHOWCOLORHINTS=1
   export PS1='\h:\W$(__git_ps1 "(%s)") \u\n\$ '
-  link $env_path/gitconfig ~/.gitconfig
+  ln -sf $env_path/gitconfig ~/.gitconfig
 fi
 
 # node.js
