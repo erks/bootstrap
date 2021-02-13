@@ -5,7 +5,7 @@ update () {
     pushd ${bootstrap_path} > /dev/null
     git pull origin master
     popd > /dev/null
-    source $HOME/.bash_profile
+    source $HOME/.profile
 }
 
 sshkey () {

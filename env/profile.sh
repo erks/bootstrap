@@ -8,9 +8,6 @@ export PATH=$HOME/bin:/usr/local/sbin:/usr/local/bin:$PATH
 # enable GREP colors
 export GREP_OPTIONS='--color=auto'
 
-# complete sudo and man-pages
-complete -cf sudo man
-
 if [ -f "${env_path}/aliases.sh" ]; then
   . "${env_path}/aliases.sh"
 fi
