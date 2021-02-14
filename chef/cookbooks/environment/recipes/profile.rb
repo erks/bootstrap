@@ -1,16 +1,17 @@
 home = ENV['HOME']
 env_path = File.expand_path(node["paths"]["env"])
-bashrc_path = File.join(home, ".bashrc")
-bashprofile_path = File.join(home, ".bash_profile")
 profile_script_path = File.join(env_path, "profile.sh")
+profile_path = File.join(home, ".profile")
+zshrc_path = File.join(home, ".zshrc")
 
-execute "update .bashrc" do
-  command "echo \"source #{profile_script_path}\" >> #{bashrc_path}"
-  not_if "grep 'profile.sh' #{bashrc_path}"
+execute "update .profile" do
+  command "echo \"source #{profile_script_path}\" >> #{profile_path}"
+  not_if "grep 'profile.sh' #{profile_path}"
 end
 
-execute "update .bash_profile" do
-  command "echo \"[[ -f \\\"\\\$HOME/.bashrc\\\" ]] && source \\\"\\\$HOME/.bashrc\\\"\" >> #{bashprofile_path}"
-  not_if "grep '.bashrc' #{bashprofile_path}"
+execute "update .zshrc" do
+  command "echo \"[[ -f \\\"\\\$HOME/.profile\\\" ]] && source \\\"\\\$HOME/.profile\\\"\" >> #{zshrc_path}"
+  not_if "grep '.profile' #{zshrc_path}"
+  only_if { ENV['SHELL'].include?('zsh') }
 end
 
