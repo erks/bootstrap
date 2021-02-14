@@ -8,13 +8,8 @@ export PATH=$HOME/bin:/usr/local/sbin:/usr/local/bin:$PATH
 # enable GREP colors
 export GREP_OPTIONS='--color=auto'
 
-if [ -f "${env_path}/aliases.sh" ]; then
-  . "${env_path}/aliases.sh"
-fi
-
-if [ -f "${env_path}/functions.sh" ]; then
-  . "${env_path}/functions.sh"
-fi
+source "${env_path}/aliases.sh"
+source "${env_path}/functions.sh"
 
 # vim
 link $env_path/vimrc $HOME/.vimrc
@@ -23,6 +18,12 @@ if [ ! -e "${HOME}/.vim/bundle/Vundle.vim" ]; then
   vim +PluginInstall +qall
 fi
 
-if [ -f "${env_path}/brew.sh" ]; then
-  . "${env_path}/brew.sh"
+source "${env_path}/brew.sh"
+
+if [[ "${SHELL}" =~ bash ]]; then
+  source "${env_path}/bash.sh"
+fi
+
+if [[ "${SHELL}" =~ zsh ]]; then
+  source "${env_path}/zsh.sh"
 fi

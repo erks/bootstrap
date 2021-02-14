@@ -6,31 +6,7 @@ is_installed () {
   [[ " ${packages[@]} " =~ " $1 " ]]
 }
 
-if [[ "${SHELL}" =~ bash ]]; then
-  # complete sudo and man-pages
-  complete -cf sudo man
-  export BASH_SILENCE_DEPRECATION_WARNING=1
-  if ! is_installed bash-completion; then
-    brew install bash-completion
-  fi
-  # awscli
-  if is_installed awscli; then
-    complete -C aws_completer aws
-  fi
-fi
-
-if [[ "${SHELL}" =~ zsh ]]; then
-  chmod -R go-w '/usr/local/share/zsh'
-  autoload -Uz compinit promptinit
-  compinit
-  promptinit
-fi
-
 if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
-
-if is_installed bash-completion; then
-  . "$(brew --prefix)/etc/bash_completion"
-fi
 
 # git
 if type git > /dev/null; then
@@ -41,13 +17,6 @@ if type git > /dev/null; then
     export GIT_PS1_SHOWUNTRACKEDFILES=1
     export GIT_PS1_SHOWUPSTREAM="auto name"
     export GIT_PS1_SHOWCOLORHINTS=1
-    if [[ "${SHELL}" =~ bash ]]; then
-      export PS1='\h:\W$(__git_ps1 "(%s)") \u\n\$ '
-    fi
-    if [[ "${SHELL}" =~ zsh ]]; then
-      setopt PROMPT_SUBST
-      export PS1='%B%m:%F{blue}%100<...<%~%f$(__git_ps1 "(%s)") %n'$'\n''$%b '
-    fi
   fi
 fi
 
