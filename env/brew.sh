@@ -17,19 +17,13 @@ if [[ "${SHELL}" =~ bash ]]; then
   if is_installed awscli; then
     complete -C aws_completer aws
   fi
-  # git
-  if type git > /dev/null; then
-    export GIT_PS1_SHOWDIRTYSTATE=1
-    export GIT_PS1_SHOWUNTRACKEDFILES=1
-    export GIT_PS1_SHOWUPSTREAM="auto name"
-    export GIT_PS1_SHOWCOLORHINTS=1
-    export PS1='\h:\W$(__git_ps1 "(%s)") \u\n\$ '
-  fi
 fi
 
 if [[ "${SHELL}" =~ zsh ]]; then
   chmod -R go-w '/usr/local/share/zsh'
-  autoload -Uz compinit && compinit
+  autoload -Uz compinit promptinit
+  compinit
+  promptinit
 fi
 
 if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
@@ -41,6 +35,20 @@ fi
 # git
 if type git > /dev/null; then
   ln -sf $env_path/gitconfig ~/.gitconfig
+  if is_installed git; then
+    source `brew --prefix`/etc/bash_completion.d/git-prompt.sh
+    export GIT_PS1_SHOWDIRTYSTATE=1
+    export GIT_PS1_SHOWUNTRACKEDFILES=1
+    export GIT_PS1_SHOWUPSTREAM="auto name"
+    export GIT_PS1_SHOWCOLORHINTS=1
+    if [[ "${SHELL}" =~ bash ]]; then
+      export PS1='\h:\W$(__git_ps1 "(%s)") \u\n\$ '
+    fi
+    if [[ "${SHELL}" =~ zsh ]]; then
+      setopt PROMPT_SUBST
+      export PS1='%B%m:%F{blue}%100<...<%~%f$(__git_ps1 "(%s)") %n'$'\n''$%b '
+    fi
+  fi
 fi
 
 # node.js
