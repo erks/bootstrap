@@ -1,35 +1,37 @@
 [alias]
-  co = checkout
-  ci = commit
-  st = status --short --branch
-  br = branch --verbose --verbose
-  l = log --decorate --name-status
-  ll = log --decorate --name-status --all
-  f = fetch --all --prune --tags
-  p = pull --all --prune
-  sub = submodule
-  subup = submodule update --recursive --init
-  pushf = "!f() { GITHUB_TOKEN=e73c8fb6ed4a9a02a1e64b6f3ad1ce8679c0f63c ~/projects/zynga/tungbori/git-force-push/git-force-push.sh; }; f"
+        co = checkout
+        ci = commit
+        st = status --short --branch
+        br = branch --verbose --verbose
+        l = log --decorate --name-status
+        ll = log --decorate --name-status --all
+        f = fetch --all --prune --tags
+        p = pull --all --prune
+        sub = submodule
+        subup = submodule update --recursive --init
+        pushf = "!f() { GITHUB_TOKEN=e73c8fb6ed4a9a02a1e64b6f3ad1ce8679c0f63c ~/projects/zynga/tungbori/git-force-push/git-force-push.sh; }; f"
 [user]
-  name = Touch Ungboriboonpisal
-  useConfigOnly = true
-  email = tungbori@zynga.com
+        name = Touch Ungboriboonpisal
+        useConfigOnly = true
+        email = tungbori@zynga.com
 [credential]
-  helper = osxkeychain
+        helper = osxkeychain
 [color]
-  ui = auto
+        ui = auto
 [core]
-  autocrlf = input
-  editor = /usr/bin/vim
+        autocrlf = input
+        editor = /usr/bin/vim
 [diff]
-  algorithm = patience
-  indentHeuristic = true
+        algorithm = patience
+        indentHeuristic = true
 [filter "lfs"]
-  required = true
-  clean = git-lfs clean -- %f
-  smudge = git-lfs smudge -- %f
-  process = git-lfs filter-process
+        required = true
+        clean = git-lfs clean -- %f
+        smudge = git-lfs smudge -- %f
+        process = git-lfs filter-process
 [includeIf "gitdir:zynga/"]
-  path = .gitconfig-zynga
+        path = .gitconfig-zynga
 [pull]
-	rebase = false
+        rebase = false
+[url "ssh://git@github-ca.corp.zynga.com/"]
+        insteadOf = https://github-ca.corp.zynga.com/
