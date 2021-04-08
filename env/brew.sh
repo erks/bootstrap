@@ -44,7 +44,7 @@ fi
 
 # go env
 if is_installed go; then
-  export GOPATH="$HOME/projects/go"
+  GOPATH=$(go env GOPATH)
   mkdir -p $GOPATH/{bin,src,pkg} > /dev/null
   export PATH=$GOPATH/bin:$PATH
 fi
