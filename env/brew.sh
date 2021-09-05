@@ -11,13 +11,14 @@ if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
 # git
 if type git > /dev/null; then
   ln -sf $env_path/gitconfig ~/.gitconfig
-  if is_installed git; then
-    source `brew --prefix`/etc/bash_completion.d/git-prompt.sh
-    export GIT_PS1_SHOWDIRTYSTATE=1
-    export GIT_PS1_SHOWUNTRACKEDFILES=1
-    export GIT_PS1_SHOWUPSTREAM="auto name"
-    export GIT_PS1_SHOWCOLORHINTS=1
+  if ! is_installed git; then
+    brew install git
   fi
+  source `brew --prefix`/etc/bash_completion.d/git-prompt.sh
+  export GIT_PS1_SHOWDIRTYSTATE=1
+  export GIT_PS1_SHOWUNTRACKEDFILES=1
+  export GIT_PS1_SHOWUPSTREAM="auto name"
+  export GIT_PS1_SHOWCOLORHINTS=1
 fi
 
 # node.js
