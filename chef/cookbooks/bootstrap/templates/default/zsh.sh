@@ -1,5 +1,7 @@
 #!/usr/bin/env zsh
 
+[[ -d /opt/homebrew/share/zsh/site-functions/ ]] && fpath+=(/opt/homebrew/share/zsh/site-functions/)
+
 chmod -R go-w '/usr/local/share/zsh'
 autoload -Uz compinit promptinit select-word-style bashcompinit
 compinit
