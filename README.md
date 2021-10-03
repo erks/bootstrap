@@ -1,5 +1,7 @@
 # Bootstrap
 
+A [Chef](https://www.chef.io)-based tool to boostrap the setup and installation of software on a new Mac.
+
 ## Prerequisites
 * Install XCode + Command Line Tools
 * Install [Secretive](https://github.com/maxgoedjen/secretive)
