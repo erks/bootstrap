@@ -10,7 +10,7 @@ if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
 
 # git
 if type git > /dev/null; then
-  ln -sf $env_path/gitconfig ~/.gitconfig
+  ln -sf ${SCRIPT_DIR}/gitconfig ~/.gitconfig
   if ! is_installed git; then
     brew install git
   fi
@@ -34,7 +34,7 @@ fi
 
 # tmux
 if is_installed tmux; then
-  link $env_path/tmux.conf ~/.tmux.conf
+  ln -sf ${SCRIPT_DIR}/tmux.conf ~/.tmux.conf
 fi
 
 # jenv

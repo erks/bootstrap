@@ -4,32 +4,18 @@ set -e
 
 trap "exit" INT
 
-BOOTSTRAP_PATH=~/projects/erks/bootstrap
-BOOTSTRAP_REPO=https://github.com/erks/bootstrap.git
+SCRIPT_DIR="$(CDPATH= cd -- "$(dirname -- "$0")" && pwd)"
+BOOTSTRAP_PATH="${SCRIPT_DIR}"
+ROLE="${1:-macos}"
 
-if ! command -v brew > /dev/null 2>&1; then
-    echo "Installing homebrew..."
-    /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)"
+if ! grep 'pam_tid.so' /etc/pam.d/sudo >/dev/null; then
+    echo "setting up TouchID for sudo..."
+    echo "auth sufficient pam_tid.so" | cat - /etc/pam.d/sudo > /tmp/sudo_pam && sudo mv /tmp/sudo_pam /etc/pam.d/sudo
 fi
 
-if [ ! -d "${BOOTSTRAP_PATH}" ]; then
-    echo "Cloning bootstrap repo..."
-    mkdir -p "${BOOTSTRAP_PATH}"
-    pushd "${BOOTSTRAP_PATH}"
-    git clone ${BOOTSTRAP_REPO} .
-    popd
-else
-    echo "Updating bootstrap repo..."
-    pushd "${BOOTSTRAP_PATH}"
-    git pull origin master
-    popd
-fi
-
-NODE_PATH="${BOOTSTRAP_PATH}/chef/nodes/home.json"
-if [ ! -f ${NODE_PATH} ]; then
-    echo "File doesn't exist: ${NODE_PATH}"
-    exit 1
-fi
+echo "Updating bootstrap repo..."
+git -C "${BOOTSTRAP_PATH}" config pull.rebase false
+git -C "${BOOTSTRAP_PATH}" pull origin master
 
 if ! command -v chef-solo > /dev/null 2>&1; then
     echo "Installing chef..."
@@ -37,6 +23,14 @@ if ! command -v chef-solo > /dev/null 2>&1; then
 fi
 
 echo "Running chef..."
-pushd "${BOOTSTRAP_PATH}"/chef > /dev/null
-chef-solo --config ${BOOTSTRAP_PATH}/chef/conf/solo.rb --json-attributes ${NODE_PATH}
-popd > /dev/null
+mkdir -p "${BOOTSTRAP_PATH}/chef/conf" /tmp/chef-solo
+touch "${BOOTSTRAP_PATH}/chef/conf/solo.rb"
+echo "{\"bootstrap\":{\"paths\":{\"source\":\"${BOOTSTRAP_PATH}\"}}}" > '/tmp/chef-solo/attr.json'
+chef-solo --config "${BOOTSTRAP_PATH}/chef/conf/solo.rb" \
+          --config-option file_cache_path="/tmp/chef-solo" \
+          --config-option encrypted_data_bag_secret="/tmp/chef-solo/data_bag_key" \
+          --config-option cookbook_path="${BOOTSTRAP_PATH}/chef/cookbooks" \
+          --config-option role_path="${BOOTSTRAP_PATH}/chef/roles" \
+          --json-attributes "/tmp/chef-solo/attr.json" \
+          --override-runlist "role[${ROLE}]" \
+          --once
