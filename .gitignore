@@ -1,6 +1,5 @@
 .DS_Store
 .idea/
 .ruby-version
-chef/nodes/
-!chef/nodes/home.json
-conf/
+/chef/nodes/
+/chef/conf/
