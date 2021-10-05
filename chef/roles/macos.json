@@ -6,7 +6,9 @@
 
             ],
             "formulas": [
-                "git"
+                "git",
+                "jq",
+                "tree"
             ],
             "casks": [
 
