@@ -20,5 +20,5 @@ amr () {
     echo "downloading ${AMR_URL} to ${AMR_PATH}/${AMR_FILE}..."
     curl "${AMR_URL}" -o "${AMR_FILE}"
     echo "unzipping ${AMR_FILE}..."
-    unzip -fo "${AMR_FILE}"
+    unzip -o "${AMR_FILE}"
 }
