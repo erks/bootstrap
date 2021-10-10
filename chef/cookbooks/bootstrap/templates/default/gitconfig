@@ -11,9 +11,9 @@
         subup = submodule update --recursive --init
         pushf = push --force
 [user]
-        name = Touch Ungboriboonpisal
+        name = <%=@name%>
         useConfigOnly = true
-        email = touch@ungboriboonpisal.com
+        email = <%=@email%>
 [credential]
         helper = osxkeychain
 [color]

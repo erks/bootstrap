@@ -12,7 +12,9 @@ output_path = node['bootstrap']['paths']['output']
   template File.join(output_path, file) do
     source file
     owner Bootstrap.owner
-    variables :bootstrap_dir => source_path
+    variables :bootstrap_dir => source_path,
+              :name => node['bootstrap']['name'],
+              :email => node['bootstrap']['email']
   end
 end
 

@@ -12,5 +12,5 @@ A [Chef](https://www.chef.io)-based tool to boostrap the setup and installation 
 * `git clone` this repository (or your fork)
 
 ## Steps
-* Update [`chef/roles/macos.json`](/chef/roles/macos.json) to install any software to your liking (or override any [defaults](/chef/cookbooks/bootstrap/attributes/default.rb))
+* Update [`chef/roles/macos.rb`](/chef/roles/macos.rb) to install any software to your liking (or override any [defaults](/chef/cookbooks/bootstrap/attributes/default.rb))
 * Run `./run.sh`
