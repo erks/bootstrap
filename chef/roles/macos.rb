@@ -3,7 +3,7 @@ run_list "recipe[bootstrap]"
 default_attributes(
     :bootstrap => {
         :name => 'Touch Ungboriboonpisal',
-        :email => 'touch@ungboriboonpisal.com'
+        :email => 'erks@users.noreply.github.com'
     },
     :homebrew => {
         :taps => [],

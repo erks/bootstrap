@@ -58,5 +58,5 @@ if is_installed goenv; then
 fi
 
 alias installed='brew list --versions';
-alias upgrade='brew upgrade `brew outdated`';
+alias upgrade='brew update && brew upgrade `brew outdated`';
 alias uninstall='brew cleanup';
