@@ -7,10 +7,16 @@ default_attributes(
     :homebrew => {
         :taps => [],
         :formulas => [
+            'coreutils',
+            'direnv',
             'git',
             'jq',
-            'tree'
+            'kube-ps1',
+            'tree',
+            'watch',
         ],
-        :casks => []
+        :casks => [
+            'alt-tab',
+        ]
     }
 )

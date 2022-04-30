@@ -1,35 +1,37 @@
 [alias]
-        co = checkout
-        ci = commit
-        st = status --short --branch
         br = branch --verbose --verbose
+        ci = commit
+        co = checkout
         l = log --decorate --name-status
         ll = log --decorate --name-status --all
         f = fetch --all --prune --tags
         p = pull --all --prune
+        pushf = push --force
+        st = status --short --branch
         sub = submodule
         subup = submodule update --recursive --init
-        pushf = push --force
-[user]
-        name = <%=@name%>
-        useConfigOnly = true
-        email = <%=@email%>
-[credential]
-        helper = osxkeychain
 [color]
         ui = auto
 [core]
         autocrlf = input
         editor = /usr/bin/vim
+[credential]
+        helper = osxkeychain
 [diff]
         algorithm = patience
         indentHeuristic = true
 [filter "lfs"]
-        required = true
         clean = git-lfs clean -- %f
-        smudge = git-lfs smudge -- %f
         process = git-lfs filter-process
+        required = true
+        smudge = git-lfs smudge -- %f
 [pull]
         rebase = false
+[rebase]
+        autosquash = true
 [url "ssh://git@github.com/"]
         insteadOf = https://github.com/
+[user]
+        name = <%=@name%>
+        email = <%=@email%>
+        useConfigOnly = true

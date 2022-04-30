@@ -70,13 +70,11 @@ node['homebrew']['casks'].each do |cask|
       version cask['version'] if cask.fetch(:version, false)
       owner Bootstrap.owner
       homebrew_path homebrew_exec
-      action :upgrade
     end
   else
     homebrew_cask cask do
       owner Bootstrap.owner
       homebrew_path homebrew_exec
-      action :upgrade
     end
   end
 end

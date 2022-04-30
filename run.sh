@@ -15,7 +15,7 @@ fi
 
 echo "Updating bootstrap repo..."
 git -C "${BOOTSTRAP_PATH}" config pull.rebase false
-git -C "${BOOTSTRAP_PATH}" pull origin main
+git -C "${BOOTSTRAP_PATH}" pull origin "$(git -C "${BOOTSTRAP_PATH}" rev-parse --abbrev-ref HEAD)"
 
 if ! command -v chef-solo > /dev/null 2>&1; then
     echo "Installing chef..."
