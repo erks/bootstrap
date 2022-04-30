@@ -51,10 +51,12 @@ node['homebrew']['formulas'].each do |formula|
       options formula_options.strip
       version formula['version'] if formula.fetch(:version, false)
       homebrew_user Bootstrap.owner
+      action :upgrade
     end
   else
     homebrew_package formula do
       homebrew_user Bootstrap.owner
+      action :upgrade
     end
   end
 end
@@ -68,11 +70,13 @@ node['homebrew']['casks'].each do |cask|
       version cask['version'] if cask.fetch(:version, false)
       owner Bootstrap.owner
       homebrew_path homebrew_exec
+      action :upgrade
     end
   else
     homebrew_cask cask do
       owner Bootstrap.owner
       homebrew_path homebrew_exec
+      action :upgrade
     end
   end
 end

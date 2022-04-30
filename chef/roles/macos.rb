@@ -1,5 +1,4 @@
 name "macos"
-run_list "recipe[bootstrap]"
 default_attributes(
     :bootstrap => {
         :name => 'Touch Ungboriboonpisal',

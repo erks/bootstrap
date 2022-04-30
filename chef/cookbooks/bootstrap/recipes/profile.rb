@@ -18,6 +18,10 @@ output_path = node['bootstrap']['paths']['output']
   end
 end
 
+file profile_path do
+  owner Bootstrap.owner
+end
+
 ruby_block "update .profile" do
   block do
     fe = Chef::Util::FileEdit.new(profile_path)

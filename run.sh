@@ -6,7 +6,7 @@ trap "exit" INT
 
 SCRIPT_DIR="$(CDPATH= cd -- "$(dirname -- "$0")" && pwd)"
 BOOTSTRAP_PATH="${SCRIPT_DIR}"
-ROLE="${1:-macos}"
+RECIPE="${1:-default}"
 
 if ! grep 'pam_tid.so' /etc/pam.d/sudo >/dev/null; then
     echo "setting up TouchID for sudo..."
@@ -15,7 +15,7 @@ fi
 
 echo "Updating bootstrap repo..."
 git -C "${BOOTSTRAP_PATH}" config pull.rebase false
-git -C "${BOOTSTRAP_PATH}" pull origin master
+git -C "${BOOTSTRAP_PATH}" pull origin main
 
 if ! command -v chef-solo > /dev/null 2>&1; then
     echo "Installing chef..."
@@ -32,5 +32,5 @@ chef-solo --config "${BOOTSTRAP_PATH}/chef/conf/solo.rb" \
           --config-option cookbook_path="${BOOTSTRAP_PATH}/chef/cookbooks" \
           --config-option role_path="${BOOTSTRAP_PATH}/chef/roles" \
           --json-attributes "/tmp/chef-solo/attr.json" \
-          --override-runlist "role[${ROLE}]" \
+          --override-runlist "role[macos],recipe[bootstrap::${RECIPE}]" \
           --once
