@@ -14,6 +14,7 @@ default_attributes(
             'kube-ps1',
             'tree',
             'watch',
+            'wget',
         ],
         :casks => [
             'alt-tab',
