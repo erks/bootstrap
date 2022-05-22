@@ -18,7 +18,7 @@ default_attributes(
         ],
         :casks => [
             'alt-tab',
-            'intellij',
+            'intellij-idea-ce',
             'visual-studio-code',
         ]
     }
