@@ -17,6 +17,8 @@ default_attributes(
             'wget',
         ],
         :casks => [
+            '1password',
+            '1password-cli',
             'alt-tab',
             'intellij-idea-ce',
             'visual-studio-code',
