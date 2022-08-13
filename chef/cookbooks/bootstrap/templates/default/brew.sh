@@ -10,6 +10,7 @@ if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
 
 if type git > /dev/null; then
   ln -sf ${SCRIPT_DIR}/gitconfig ~/.gitconfig
+  ln -sf ${SCRIPT_DIR}/gitignore ~/.gitignore
   if ! is_installed git; then
     brew install git
   fi

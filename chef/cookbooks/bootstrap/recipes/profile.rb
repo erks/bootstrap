@@ -8,7 +8,7 @@ zshrc_path = File.join(home, ".zshrc")
 source_path = node['bootstrap']['paths']['source']
 output_path = node['bootstrap']['paths']['output']
 
-%w(profile.sh aliases.sh functions.sh brew.sh bash.sh zsh.sh gitconfig tmux.conf vimrc).each do |file|
+%w(profile.sh aliases.sh functions.sh brew.sh bash.sh zsh.sh gitconfig gitignore tmux.conf vimrc).each do |file|
   template File.join(output_path, file) do
     source file
     owner Bootstrap.owner
