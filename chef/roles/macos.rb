@@ -20,6 +20,7 @@ default_attributes(
             '1password',
             '1password-cli',
             'alt-tab',
+            'docker',
             'intellij-idea-ce',
             'visual-studio-code',
         ]
