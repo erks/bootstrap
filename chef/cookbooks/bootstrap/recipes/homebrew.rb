@@ -1,22 +1,4 @@
-arch = `arch`
-homebrew_root_path = arch == 'arm64' ? '/opt/homebrew' : '/usr/local'
-homebrew_paths_path = arch == 'arm64' ? '/etc/paths.d/10-brew' : '/etc/paths.d/20-brew'
-homebrew_bin_path = File.join(homebrew_root_path, 'bin')
-homebrew_exec = File.join(homebrew_bin_path, 'brew')
-exists = File.exists?(homebrew_exec)
-
-# Install Homebrew: https://brew.sh/
-execute "install homebrew" do
-  command "/bin/bash -c \"$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)\""
-  user Bootstrap.owner
-  live_stream true
-  not_if { exists }
-end
-
-execute homebrew_paths_path do
-  command "echo '#{homebrew_bin_path}' | sudo tee '#{homebrew_paths_path}'"
-  not_if { File.exists?(homebrew_paths_path) }
-end
+homebrew_exec = `command -v brew`.strip
 
 node['homebrew']['taps'].each do |tap|
   if tap.is_a?(String)
