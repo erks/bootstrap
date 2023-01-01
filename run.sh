@@ -17,6 +17,12 @@ echo "Updating bootstrap repo..."
 git -C "${BOOTSTRAP_PATH}" config pull.rebase false
 git -C "${BOOTSTRAP_PATH}" pull origin "$(git -C "${BOOTSTRAP_PATH}" rev-parse --abbrev-ref HEAD)"
 
+if ! command -v brew > /dev/null 2>&1; then
+    echo "Installing homebrew..."
+    bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+    brew doctor
+fi
+
 if ! command -v chef-solo > /dev/null 2>&1; then
     echo "Installing chef..."
     curl -sL https://omnitruck.chef.io/install.sh | sudo bash
