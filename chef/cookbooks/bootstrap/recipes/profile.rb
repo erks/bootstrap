@@ -4,6 +4,7 @@ home = ::Dir.home(Bootstrap.owner)
 profile_path = File.join(home, ".profile")
 bashrc_path = File.join(home, ".bashrc")
 zshrc_path = File.join(home, ".zshrc")
+rc_path = ENV['SHELL'].include?('zsh') ? zshrc_path : bashrc_path
 
 source_path = node['bootstrap']['paths']['source']
 output_path = node['bootstrap']['paths']['output']
@@ -22,6 +23,10 @@ file profile_path do
   owner Bootstrap.owner
 end
 
+file rc_path do
+  owner Bootstrap.owner
+end
+
 ruby_block "update .profile" do
   block do
     fe = Chef::Util::FileEdit.new(profile_path)
@@ -33,7 +38,7 @@ end
 
 ruby_block "update shell rc file" do
   block do
-    fe = Chef::Util::FileEdit.new(ENV['SHELL'].include?('zsh') ? zshrc_path : bashrc_path)
+    fe = Chef::Util::FileEdit.new(rc_path)
     fe.insert_line_if_no_match(/\.profile/,
                                "[[ -f \"$HOME/.profile\" ]] && source \"$HOME/.profile\"")
     fe.write_file
