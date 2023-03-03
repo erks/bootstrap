@@ -20,7 +20,7 @@ default_attributes(
             '1password',
             '1password-cli',
             'alt-tab',
-            'intellij-idea-ce',
+            'intellij-idea',
             'visual-studio-code',
         ]
     }
