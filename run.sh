@@ -8,9 +8,9 @@ SCRIPT_DIR="$(CDPATH= cd -- "$(dirname -- "$0")" && pwd)"
 BOOTSTRAP_PATH="${SCRIPT_DIR}"
 RECIPE="${1:-default}"
 
-if ! grep 'pam_tid.so' /etc/pam.d/sudo >/dev/null; then
+if [ ! -f /etc/pam.d/sudo_local ]; then
     echo "setting up TouchID for sudo..."
-    echo "auth sufficient pam_tid.so" | cat - /etc/pam.d/sudo > /tmp/sudo_pam && sudo mv /tmp/sudo_pam /etc/pam.d/sudo
+    echo "auth sufficient pam_tid.so" | sudo tee /etc/pam.d/sudo_local
 fi
 
 echo "Updating bootstrap repo..."

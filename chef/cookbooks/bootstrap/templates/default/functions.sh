@@ -1,11 +1,15 @@
 #!/bin/sh
 
 update () {
-    echo "running bootstrap..."
-    "${BOOTSTRAP_DIR}/run.sh" "$@"
+  echo "running bootstrap..."
+  "${BOOTSTRAP_DIR}/run.sh" "$@"
 
-    echo "sourcing profile..."
-    source "${HOME}/.profile"
+  echo "sourcing profile..."
+  source "${HOME}/.profile"
+}
+
+idea() {
+  open -na "IntelliJ IDEA.app" --args "$@"
 }
 
 kns() {
@@ -16,10 +20,16 @@ kns() {
   fi
 }
 
-kcluster() {
-  if [ -n "${1}" ]; then
-    kubectl config use-context "${1}"
-  else
-    kubectl config current-context
-  fi
+path_append() {
+  case ":$PATH:" in
+  *":$1:"*) : ;;
+  *) export PATH="${PATH:+"$PATH:"}$1" ;;
+  esac
+}
+
+path_prepend() {
+  case ":$PATH:" in
+  *":$1:"*) : ;;
+  *) export PATH="$1${PATH:+"$PATH:"}" ;;
+  esac
 }

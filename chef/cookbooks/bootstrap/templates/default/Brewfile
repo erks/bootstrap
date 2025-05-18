@@ -11,6 +11,9 @@ brew 'kube-ps1'
 brew 'tree'
 brew 'watch'
 brew 'wget'
+brew 'zsh-autosuggestions'
+brew 'zsh-history-substring-search'
+brew 'zsh-syntax-highlighting'
 
 # casks
 cask '1password'
