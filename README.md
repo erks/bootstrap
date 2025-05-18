@@ -3,7 +3,7 @@
 A [Chef](https://www.chef.io)-based tool to boostrap the setup and installation of software on a new Mac.
 
 ## Prerequisites
-* Install XCode + Command Line Tools
+* Install [XCode Command Line Tools](https://developer.apple.com/download/all/)
 * Install [Secretive](https://github.com/maxgoedjen/secretive)
     * Follow the instructions to set up the `~/.ssh/config` file
     * Create a new SSH key pair for the new machine
