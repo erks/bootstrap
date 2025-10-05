@@ -16,9 +16,9 @@ brew 'zsh-history-substring-search'
 brew 'zsh-syntax-highlighting'
 
 # casks
-cask '1password'
-cask '1password-cli'
-cask 'intellij-idea'
-cask 'iterm2'
-cask 'kubecontext'
-cask 'visual-studio-code'
+cask '1password', greedy: true
+cask '1password-cli', greedy: true
+cask 'intellij-idea', greedy: true
+cask 'iterm2', greedy: true
+cask 'kubecontext', greedy: true
+cask 'visual-studio-code', greedy: true
