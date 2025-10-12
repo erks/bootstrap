@@ -18,7 +18,9 @@ brew 'zsh-syntax-highlighting'
 # casks
 cask '1password', greedy: true
 cask '1password-cli', greedy: true
+cask 'claude-code', greedy: true
 cask 'intellij-idea', greedy: true
+cask 'intellij-idea-ce', greedy: true
 cask 'iterm2', greedy: true
 cask 'kubecontext', greedy: true
 cask 'visual-studio-code', greedy: true

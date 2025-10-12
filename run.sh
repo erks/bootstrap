@@ -24,7 +24,8 @@ if ! command -v brew > /dev/null 2>&1; then
     brew doctor
 fi
 
-if ! command -v chef-solo > /dev/null 2>&1; then
+CHEF_SOLO="/opt/chef/bin/chef-solo"
+if ! -f "${CHEF_SOLO}" > /dev/null 2>&1; then
     echo "Installing chef..."
     curl -sL https://omnitruck.chef.io/install.sh | sudo bash
 fi
@@ -33,7 +34,7 @@ echo "Running chef..."
 mkdir -p "${BOOTSTRAP_PATH}/chef/conf" /tmp/chef-solo
 touch "${BOOTSTRAP_PATH}/chef/conf/solo.rb"
 echo "{\"bootstrap\":{\"paths\":{\"source\":\"${BOOTSTRAP_PATH}\"}}}" > '/tmp/chef-solo/attr.json'
-/opt/chef/bin/chef-solo --config "${BOOTSTRAP_PATH}/chef/conf/solo.rb" \
+"${CHEF_SOLO}" --config "${BOOTSTRAP_PATH}/chef/conf/solo.rb" \
           --config-option file_cache_path="/tmp/chef-solo" \
           --config-option encrypted_data_bag_secret="/tmp/chef-solo/data_bag_key" \
           --config-option cookbook_path="${BOOTSTRAP_PATH}/chef/cookbooks" \
