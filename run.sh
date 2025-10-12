@@ -25,7 +25,7 @@ if ! command -v brew > /dev/null 2>&1; then
 fi
 
 CHEF_SOLO="/opt/chef/bin/chef-solo"
-if ! -f "${CHEF_SOLO}" > /dev/null 2>&1; then
+if [ ! -f "${CHEF_SOLO}" ]; then
     echo "Installing chef..."
     curl -sL https://omnitruck.chef.io/install.sh | sudo bash
 fi
