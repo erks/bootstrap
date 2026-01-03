@@ -5,6 +5,10 @@
 # formula
 brew 'coreutils'
 brew 'direnv'
+brew 'docker'
+brew 'docker-buildx'
+brew 'docker-compose'
+brew 'docker-credential-helper'
 brew 'git'
 brew 'jq'
 brew 'kube-ps1'
