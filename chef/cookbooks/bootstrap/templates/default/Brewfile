@@ -19,7 +19,7 @@ brew 'zsh-syntax-highlighting'
 cask '1password', greedy: false
 cask '1password-cli', greedy: false
 cask 'claude-code', greedy: false
+cask 'docker-desktop', greedy: false
 cask 'intellij-idea', greedy: false
 cask 'iterm2', greedy: false
-cask 'kubecontext', greedy: false
 cask 'visual-studio-code', greedy: false
