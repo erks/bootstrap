@@ -1,9 +1,14 @@
 #!/usr/bin/env bash
 
 packages=($(brew ls --formula -1))
+casks=($(brew ls --cask -1))
 
 is_installed () {
   [[ " ${packages[@]} " =~ " $1 " ]]
+}
+
+is_cask_installed () {
+  [[ " ${casks[@]} " =~ " $1 " ]]
 }
 
 if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
@@ -54,6 +59,10 @@ fi
 if is_installed kube-ps1; then
   . "$(brew --prefix)/opt/kube-ps1/share/kube-ps1.sh"
   export KUBE_PS1_SYMBOL_ENABLE=false
+fi
+
+if is_cask_installed docker-desktop; then
+  export PATH="/Applications/Docker.app/Contents/Resources/bin:$PATH"
 fi
 
 alias installed='brew list --versions'
