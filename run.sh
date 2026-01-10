@@ -20,14 +20,14 @@ git -C "${BOOTSTRAP_PATH}" pull origin "$(git -C "${BOOTSTRAP_PATH}" rev-parse -
 if ! command -v brew > /dev/null 2>&1; then
     echo "Installing homebrew..."
     bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
-    export PATH="/opt/homebrew/bin:$PATH"
+    eval "$(/opt/homebrew/bin/brew shellenv)"
     brew doctor
 fi
 
-CHEF_SOLO="/opt/chef/bin/chef-solo"
-if [ ! -f "${CHEF_SOLO}" ]; then
+CHEF_SOLO="chef-solo"
+if ! command -v "${CHEF_SOLO}" > /dev/null 2>&1; then
     echo "Installing chef..."
-    curl -sL https://omnitruck.chef.io/install.sh | sudo bash
+    brew install --cask chef-workstation
 fi
 
 echo "Running chef..."
