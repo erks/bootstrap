@@ -17,17 +17,17 @@ echo "Updating bootstrap repo..."
 git -C "${BOOTSTRAP_PATH}" config pull.rebase false
 git -C "${BOOTSTRAP_PATH}" pull origin "$(git -C "${BOOTSTRAP_PATH}" rev-parse --abbrev-ref HEAD)"
 
-if ! command -v brew > /dev/null 2>&1; then
+BREW="/opt/homebrew/bin/brew"
+if [ ! -f "${BREW}" ]; then
     echo "Installing homebrew..."
     bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
-    eval "$(/opt/homebrew/bin/brew shellenv)"
-    brew doctor
+    "${BREW}" doctor
 fi
 
-CHEF_SOLO="chef-solo"
-if ! command -v "${CHEF_SOLO}" > /dev/null 2>&1; then
+CHEF_SOLO="/opt/chef-workstation/bin/chef-solo"
+if [ ! -f "${CHEF_SOLO}" ]; then
     echo "Installing chef..."
-    brew install --cask chef-workstation
+    "${BREW}" install --cask chef-workstation
 fi
 
 echo "Running chef..."

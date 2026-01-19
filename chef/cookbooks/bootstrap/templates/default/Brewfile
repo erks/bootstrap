@@ -3,6 +3,7 @@
 # taps
 
 # formula
+brew 'ccusage'
 brew 'coreutils'
 brew 'direnv'
 brew 'git'
