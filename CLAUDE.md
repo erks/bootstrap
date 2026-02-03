@@ -65,6 +65,7 @@ bootstrap/
 
 ## Important Notes
 
+- Never use Co-Authored-By in commit messages
 - The `run.sh` script can be run from any directory (uses `$SCRIPT_DIR` for paths)
 - Stow runs with `--adopt`: if a target file exists, it's moved into `dotfiles/` and replaced with a symlink
 - After running, use `git checkout -- dotfiles/` to restore repo versions if your existing files were adopted
