@@ -14,7 +14,13 @@ execute 'brew update' do
 end
 
 execute 'brew bundle' do
-  command "#{homebrew_exec} bundle --global"
+  command "#{homebrew_exec} bundle --global --no-upgrade"
+  user Bootstrap.owner
+  live_stream true
+end
+
+execute 'brew upgrade' do
+  command "#{homebrew_exec} upgrade"
   user Bootstrap.owner
   live_stream true
 end

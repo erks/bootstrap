@@ -67,5 +67,5 @@ fi
 
 alias installed='brew list --versions'
 alias outdated='brew outdated --greedy'
-alias upgrade='brew update && brew upgrade $(brew outdated --greedy --quiet)'
+alias upgrade='brew update && brew upgrade'
 alias uninstall='brew cleanup'
