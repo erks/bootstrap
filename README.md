@@ -1,6 +1,6 @@
 # Bootstrap
 
-A [Chef](https://www.chef.io)-based tool to boostrap the setup and installation of software on a new Mac.
+A shell script + [GNU Stow](https://www.gnu.org/software/stow/) based tool to bootstrap the setup and installation of software on a new Mac.
 
 ## Prerequisites
 * Install [XCode Command Line Tools](https://developer.apple.com/download/all/)
@@ -12,5 +12,6 @@ A [Chef](https://www.chef.io)-based tool to boostrap the setup and installation 
 * `git clone` this repository (or your fork)
 
 ## Steps
-* Update [`chef/roles/macos.rb`](/chef/roles/macos.rb) to install any software to your liking (or override any [defaults](/chef/cookbooks/bootstrap/attributes/default.rb))
+* Update [`config.sh`](/config.sh) with your name and email
+* Update [`dotfiles/.Brewfile`](/dotfiles/.Brewfile) to install any software to your liking
 * Run `./run.sh`

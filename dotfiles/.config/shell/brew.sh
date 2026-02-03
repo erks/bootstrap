@@ -14,8 +14,6 @@ is_cask_installed () {
 if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
 
 if type git > /dev/null; then
-  ln -sf ${SCRIPT_DIR}/gitconfig ~/.gitconfig
-  ln -sf ${SCRIPT_DIR}/gitignore ~/.gitignore
   if ! is_installed git; then
     brew install git
   fi
@@ -33,10 +31,6 @@ fi
 
 if is_installed hub; then
   alias git=hub
-fi
-
-if is_installed tmux; then
-  ln -sf ${SCRIPT_DIR}/tmux.conf ~/.tmux.conf
 fi
 
 if is_installed jenv; then

@@ -35,6 +35,6 @@
 [url "ssh://git@github.com/"]
         insteadOf = https://github.com/
 [user]
-        name = <%=@name%>
-        email = <%=@email%>
         useConfigOnly = true
+	name = Touch Ungboriboonpisal
+	email = erks@users.noreply.github.com
