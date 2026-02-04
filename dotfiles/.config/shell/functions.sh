@@ -1,6 +1,6 @@
 #!/bin/sh
 
-BOOTSTRAP_DIR="$(dirname "$(dirname "$(dirname "$(readlink -f "$HOME/.profile")")")")"
+BOOTSTRAP_DIR="$(dirname "$(dirname "$(readlink -f "$HOME/.profile")")")"
 
 update () {
   echo "running bootstrap..."
