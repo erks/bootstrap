@@ -1,4 +1,3 @@
-# deps: homebrew
 cd "$SCRIPT_DIR"
 
 # Remove old symlinks that point elsewhere (stow can't adopt symlinks)

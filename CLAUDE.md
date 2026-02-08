@@ -30,6 +30,12 @@ The script automatically:
 bootstrap/
 ├── run.sh                    # Single entry point
 ├── config.sh                 # User-specific config (name, email)
+├── recipes/                  # Numbered recipes run in sort order
+│   ├── 10-touchid.sh
+│   ├── 20-homebrew.sh
+│   ├── 30-profile.sh
+│   ├── 40-vim.sh
+│   └── 50-git.sh
 └── dotfiles/                 # Stow package
     ├── .Brewfile             # Symlinked to ~/.Brewfile
     ├── .profile              # Main shell entry point
@@ -62,6 +68,7 @@ bootstrap/
 - **User Settings**: Edit `config.sh` to set GIT_NAME and GIT_EMAIL
 - **Shell Config**: Add/edit files in `dotfiles/.config/shell/`
 - **Dotfiles**: Add new dotfiles to the `dotfiles/` directory; they'll be symlinked on next run
+- **Recipes**: Add new recipes to `recipes/` with a numbered prefix (e.g., `06-foo.sh`). Recipes run in filename sort order. Run individual recipes by name: `./run.sh vim`
 
 ## Important Notes
 

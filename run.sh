@@ -11,59 +11,58 @@ export SCRIPT_DIR
 # Always pull latest changes
 git -C "$SCRIPT_DIR" pull origin
 
-# Available recipes in default order
-ALL_RECIPES="touchid homebrew profile vim git"
+RECIPE_DIR="$SCRIPT_DIR/recipes"
 
-# Track which recipes have run (to avoid duplicates from deps)
-RAN_RECIPES=""
-
-# Get dependencies for a recipe (first line comment: # deps: foo bar)
-get_deps() {
-    local script="$SCRIPT_DIR/recipes/$1.sh"
-    [ -f "$script" ] || return
-    local first_line
-    first_line=$(head -1 "$script")
-    if [[ "$first_line" =~ ^#\ deps:\ (.+)$ ]]; then
-        echo "${BASH_REMATCH[1]}"
+# Resolve a recipe name to its script path (supports name with or without prefix)
+find_recipe() {
+    local name="$1"
+    # Try exact match first (e.g., "01-touchid.sh" or "01-touchid")
+    if [ -f "$RECIPE_DIR/${name}.sh" ]; then
+        echo "$RECIPE_DIR/${name}.sh"
+        return
     fi
+    # Try matching by suffix (e.g., "vim" matches "04-vim.sh")
+    local match
+    match=$(ls "$RECIPE_DIR"/[0-9]*-"${name}.sh" 2>/dev/null | head -1)
+    if [ -n "$match" ]; then
+        echo "$match"
+        return
+    fi
+    return 1
 }
 
-# Run a recipe and its dependencies
+# Extract display name from recipe path (e.g., "04-vim.sh" -> "vim")
+recipe_name() {
+    local base
+    base=$(basename "$1" .sh)
+    echo "${base#[0-9]*-}"
+}
+
+# Run a single recipe
 run_recipe() {
-    local recipe="$1"
-    local script="$SCRIPT_DIR/recipes/${recipe}.sh"
-
-    # Skip if already ran
-    case " $RAN_RECIPES " in *" $recipe "*) return ;; esac
-
-    # Check recipe exists
-    if [ ! -f "$script" ]; then
-        echo "Unknown recipe: $recipe"
-        echo "Available: $ALL_RECIPES"
-        exit 1
-    fi
-
-    # Run dependencies first
-    for dep in $(get_deps "$recipe"); do
-        run_recipe "$dep"
-    done
-
-    # Run the recipe
-    echo "==> $recipe"
+    local script="$1"
+    local name
+    name=$(recipe_name "$script")
+    echo "==> $name"
     source "$script"
-    RAN_RECIPES="$RAN_RECIPES $recipe"
 }
 
-# Determine which recipes to run
 if [ $# -eq 0 ]; then
-    RECIPES="$ALL_RECIPES"
+    # Run all recipes in sorted order
+    for script in "$RECIPE_DIR"/[0-9]*.sh; do
+        [ -f "$script" ] || continue
+        run_recipe "$script"
+    done
 else
-    RECIPES="$*"
+    # Run specified recipes by name
+    for name in "$@"; do
+        script=$(find_recipe "$name") || {
+            echo "Unknown recipe: $name"
+            echo "Available: $(ls "$RECIPE_DIR"/[0-9]*.sh 2>/dev/null | while read -r f; do recipe_name "$f"; done | tr '\n' ' ')"
+            exit 1
+        }
+        run_recipe "$script"
+    done
 fi
-
-# Run each requested recipe (deps resolved automatically)
-for recipe in $RECIPES; do
-    run_recipe "$recipe"
-done
 
 echo "Bootstrap complete!"
