@@ -38,3 +38,5 @@
         useConfigOnly = true
 	name = Touch Ungboriboonpisal
 	email = erks@users.noreply.github.com
+[init]
+	defaultBranch = main
