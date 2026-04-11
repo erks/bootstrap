@@ -22,7 +22,6 @@ brew 'zsh-syntax-highlighting'
 
 # casks
 cask '1password', greedy: false
-cask '1password-cli', greedy: false
 cask 'claude-code', greedy: false
 cask 'hamed-elfayome/claude-usage/claude-usage-tracker', greedy: false
 cask 'docker-desktop', greedy: false
