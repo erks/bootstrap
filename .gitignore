@@ -8,3 +8,11 @@
 
 # Beads / Dolt files (added by bd init)
 .beads-credential-key
+
+# Gas City
+.gc/
+.beads/*
+!.beads/config.yaml
+!.beads/metadata.json
+hooks/
+.runtime/
