@@ -59,7 +59,28 @@ if is_cask_installed docker-desktop; then
   export PATH="/Applications/Docker.app/Contents/Resources/bin:$PATH"
 fi
 
+# Pre-tap custom taps and trust any fully-qualified formulae/casks declared in a Brewfile.
+brew_trust_brewfile () {
+  local brewfile="${1:-$HOME/.Brewfile}"
+  [ -f "$brewfile" ] || return 0
+
+  while IFS= read -r tap; do
+    [ -n "$tap" ] || continue
+    brew tap "$tap" >/dev/null 2>&1 || true
+  done < <(grep -E "^[[:space:]]*tap[[:space:]]+['\"]" "$brewfile" | sed -E "s/^[[:space:]]*tap[[:space:]]+['\"]([^'\"]+).*/\1/")
+
+  while IFS= read -r formula; do
+    [ -n "$formula" ] || continue
+    brew trust --formula "$formula" >/dev/null 2>&1 || true
+  done < <(grep -E "^[[:space:]]*brew[[:space:]]+['\"][^'\"]+/[^'\"]+/[^'\"]+['\"]" "$brewfile" | sed -E "s/^[[:space:]]*brew[[:space:]]+['\"]([^'\"]+).*/\1/")
+
+  while IFS= read -r cask; do
+    [ -n "$cask" ] || continue
+    brew trust --cask "$cask" >/dev/null 2>&1 || true
+  done < <(grep -E "^[[:space:]]*cask[[:space:]]+['\"][^'\"]+/[^'\"]+/[^'\"]+['\"]" "$brewfile" | sed -E "s/^[[:space:]]*cask[[:space:]]+['\"]([^'\"]+).*/\1/")
+}
+
 alias installed='brew list --versions'
 alias outdated='brew outdated --greedy'
-alias upgrade='brew update && brew upgrade && brew bundle --global'
+alias upgrade='brew update && brew_trust_brewfile "$HOME/.Brewfile" && brew upgrade && brew bundle --global'
 alias uninstall='brew cleanup'
