@@ -26,7 +26,7 @@ fi
 
 if is_installed node; then
   export NODE_PATH=/usr/local/lib/node_modules
-  export PATH=/usr/local/share/npm/bin:$PATH
+  path_prepend "/usr/local/share/npm/bin"
 fi
 
 if is_installed hub; then
@@ -34,20 +34,20 @@ if is_installed hub; then
 fi
 
 if is_installed jenv; then
-  export PATH="$HOME/.jenv/bin:$PATH"
+  path_prepend "$HOME/.jenv/bin"
   eval "$(jenv init -)"
 fi
 
 if is_installed go; then
   GOPATH=$(go env GOPATH)
   mkdir -p $GOPATH/{bin,src,pkg} > /dev/null
-  export PATH=$GOPATH/bin:$PATH
+  path_prepend "$GOPATH/bin"
 fi
 
 if is_installed goenv; then
-  export PATH="$HOME/.goenv/bin:$PATH"
+  path_prepend "$HOME/.goenv/bin"
   eval "$(goenv init -)"
-  export PATH=$GOROOT/bin:$GOPATH/bin:$PATH
+  path_prepend "$GOROOT/bin:$GOPATH/bin"
 fi
 
 if is_installed kube-ps1; then
@@ -56,7 +56,7 @@ if is_installed kube-ps1; then
 fi
 
 if is_cask_installed docker-desktop; then
-  export PATH="/Applications/Docker.app/Contents/Resources/bin:$PATH"
+  path_prepend "/Applications/Docker.app/Contents/Resources/bin"
 fi
 
 # Pre-tap custom taps and trust any fully-qualified formulae/casks declared in a Brewfile.

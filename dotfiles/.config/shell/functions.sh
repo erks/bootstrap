@@ -23,15 +23,28 @@ kns() {
 }
 
 path_append() {
-  case ":$PATH:" in
-  *":$1:"*) : ;;
-  *) export PATH="${PATH:+"$PATH:"}$1" ;;
-  esac
+  local entry
+  local IFS=:
+  for entry in $1; do
+    [ -z "$entry" ] && continue
+    case ":$PATH:" in
+      *":$entry:"*) ;;
+      *) export PATH="${PATH:+$PATH:}$entry" ;;
+    esac
+  done
 }
 
 path_prepend() {
-  case ":$PATH:" in
-  *":$1:"*) : ;;
-  *) export PATH="$1${PATH:+"$PATH:"}" ;;
-  esac
+  # Build prefix in input order, dedup against PATH and self, then prepend once.
+  local entry
+  local prefix=""
+  local IFS=:
+  for entry in $1; do
+    [ -z "$entry" ] && continue
+    case ":$prefix:$PATH:" in
+      *":$entry:"*) ;;
+      *) prefix="${prefix:+$prefix:}$entry" ;;
+    esac
+  done
+  [ -n "$prefix" ] && export PATH="$prefix${PATH:+:$PATH}"
 }
