@@ -4,7 +4,6 @@
 tap 'antoniorodr/memo'
 tap 'gastownhall/gascity'
 tap 'hamed-elfayome/claude-usage'
-tap 'steipete/tap'
 
 # formula
 brew 'antoniorodr/memo/memo'
@@ -16,8 +15,6 @@ brew 'gastownhall/gascity/gascity'
 brew 'git'
 brew 'jq'
 brew 'kube-ps1'
-brew 'steipete/tap/imsg'
-brew 'steipete/tap/remindctl'
 brew 'stow'
 brew 'tilt'
 brew 'tmux'
