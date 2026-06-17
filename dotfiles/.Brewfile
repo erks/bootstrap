@@ -4,7 +4,6 @@
 tap 'antoniorodr/memo'
 tap 'gastownhall/gascity'
 tap 'hamed-elfayome/claude-usage'
-tap 'steipete/tap'
 
 # formula
 brew 'antoniorodr/memo/memo'
@@ -16,8 +15,7 @@ brew 'gastownhall/gascity/gascity'
 brew 'git'
 brew 'jq'
 brew 'kube-ps1'
-brew 'steipete/tap/imsg'
-brew 'steipete/tap/remindctl'
+brew 'stow'
 brew 'tilt'
 brew 'tmux'
 brew 'tree'
@@ -29,7 +27,9 @@ brew 'zsh-syntax-highlighting'
 
 # casks
 cask '1password', greedy: false
+cask 'claude', greedy: false
 cask 'claude-code', greedy: false
+cask 'claudebar', greedy: false
 cask 'hamed-elfayome/claude-usage/claude-usage-tracker', greedy: false
 cask 'docker-desktop', greedy: false
 cask 'intellij-idea', greedy: false

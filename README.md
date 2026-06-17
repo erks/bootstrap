@@ -12,6 +12,6 @@ A shell script + [GNU Stow](https://www.gnu.org/software/stow/) based tool to bo
 * `git clone` this repository (or your fork)
 
 ## Steps
-* Update [`config.sh`](/config.sh) with your name and email
+* Update [`dotfiles/.gitconfig`](/dotfiles/.gitconfig) with your name and email
 * Update [`dotfiles/.Brewfile`](/dotfiles/.Brewfile) to install any software to your liking
 * Run `./run.sh`
