@@ -40,3 +40,5 @@
 	email = erks@users.noreply.github.com
 [init]
 	defaultBranch = main
+[beads]
+	role = maintainer
