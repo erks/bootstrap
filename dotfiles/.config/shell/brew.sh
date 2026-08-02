@@ -82,5 +82,5 @@ brew_trust_brewfile () {
 
 alias installed='brew list --versions'
 alias outdated='brew outdated --greedy'
-alias upgrade='brew update && brew_trust_brewfile "$HOME/.Brewfile" && brew upgrade && brew bundle --global'
+alias upgrade='brew update && brew_trust_brewfile "$HOME/.Brewfile" && brew upgrade --yes && brew bundle --global'
 alias uninstall='brew cleanup'
