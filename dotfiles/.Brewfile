@@ -8,6 +8,7 @@ tap 'hamed-elfayome/claude-usage'
 # formula
 brew 'antoniorodr/memo/memo'
 brew 'ccusage'
+brew 'container'
 brew 'coreutils'
 brew 'direnv'
 brew 'gastown'
