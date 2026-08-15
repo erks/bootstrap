@@ -7,6 +7,10 @@ tap 'hamed-elfayome/claude-usage'
 
 # formula
 brew 'antoniorodr/memo/memo'
+brew 'docker'
+brew 'docker-buildx'
+brew 'docker-compose'
+brew 'docker-credential-helper'
 brew 'ccusage'
 brew 'container'
 brew 'coreutils'
