@@ -28,6 +28,7 @@ brew 'zsh-syntax-highlighting'
 
 # casks
 cask '1password', greedy: false
+cask 'antigravity-cli', greedy: false
 cask 'claude', greedy: false
 cask 'claude-code', greedy: false
 cask 'claudebar', greedy: false
